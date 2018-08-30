@@ -14,6 +14,7 @@ namespace ObtencionDatos
 {
     public partial class Form1 : Form
     {
+        // Creamos una clase agujero, que en principio usamos como estructura
         public class Agujero
         {
             public int x, y;
@@ -21,17 +22,20 @@ namespace ObtencionDatos
             public float mecha;
         }
 
+        // Creamos una clase mecha, que en principio usamos como estructura
         public class Mecha
         {
             public String nombre;
             public float diametro;
         }
+
         string pathArchivo;
         public Form1()
         {
             InitializeComponent();
         }
 
+        // Menu
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
@@ -41,88 +45,78 @@ namespace ObtencionDatos
             Leer_Archivo(pathArchivo);
         }
 
+        // Metodo de lectura del archivo en cuestion
         public void Leer_Archivo(string path)
         {
-            textBox1.Text += pathArchivo + Environment.NewLine;
+            string textoArchivo = null;
+            string[] lineasArchivo = null;
+            ArrayList listaAgujeros = new ArrayList();
+            ArrayList listaMechas = new ArrayList();
+            int cantMechas = 0;
+            int separador = 0;
+            bool igualPorciento = false;
+           
+            textBox1.Text += pathArchivo + Environment.NewLine;         // Muestra el path en el TextBox
 
             try
             {
                 System.IO.File.OpenRead(path);
+                textoArchivo = System.IO.File.ReadAllText(path);
+                lineasArchivo = System.IO.File.ReadAllLines(path);
             }
             catch (FileNotFoundException e)
             {
-
+                Console.WriteLine("No se pudo abrir el archivo");
             }
-            string textoArchivo;
-            string[] lineasArchivo;
-            //string[][] listaMechas = new string[2][];
-            ArrayList listaAgujeros = new ArrayList();
-            ArrayList listaMechas = new ArrayList();
-
-            int cantMechas = 0;
-            int i = 0;
-            int separador = 0;
-            bool igualPorciento = false;
-
-            textoArchivo = System.IO.File.ReadAllText(path);
-            lineasArchivo = System.IO.File.ReadAllLines(path);
 
             textBox1.Text += Environment.NewLine;
-
-            i = 0;
-            foreach (string linea in lineasArchivo)         //Cuenta cantidad de mechas
+        
+            for (int i = 0; i < lineasArchivo.Length; i++)       // Cuenta cantidad de mechas
             {
-                if (linea == "%")
+                if (lineasArchivo[i] == "%")
                 {
                     igualPorciento = true;
                     separador = i;
                 }
-                if (igualPorciento && linea.Contains("T"))
+                if (igualPorciento && lineasArchivo[i].Contains("T"))
                 {
-                    textBox1.Text += linea;
+                    textBox1.Text += lineasArchivo[i];
                     cantMechas++;
                 }
-                i++;
             }
 
             textBox1.Text += Environment.NewLine + "Mechas:" + cantMechas + Environment.NewLine;
 
-            for (i = 0; i < cantMechas; i++)      //Escribo lista
+            for (int i = 0; i < cantMechas; i++)        // Escribo la lista de mechas 
             {
                 if (lineasArchivo[i + 2].Contains("T"))
                 {
-                    //listaMechas[0][i] = lineasArchivo[i+2].Substring(0, 3);
                     Mecha mecha = new Mecha();
                     mecha.nombre = lineasArchivo[i + 2].Substring(0, 3);
-                    mecha.diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6)) / 10000; //Dividimos por 1000 porque se come el .0 xd
-
+                    mecha.diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6)) / 10000;     // Dividimos por 1000 porque se come el .0
                     listaMechas.Add(mecha);
-
-                    //textBox1.Text += listaMechas[0][i] + Environment.NewLine;
-                    //listaMechas[1][i] = lineasArchivo[i+2].Substring(4, 5);
-                    //textBox1.Text += listaMechas[1][i] + Environment.NewLine;
                 }
             }
-
 
             textBox1.Text += "Lista Ready";
             String mechaActual;
             Mecha auxMecha = new Mecha();
             float diametroMechaActual = 0;
-            for (i = separador; i < lineasArchivo.Length; i++)
+            
+            for (int i = separador; i < lineasArchivo.Length; i++)      // Recorre el archivo
             {
-                if (lineasArchivo[i].Substring(0, 1) == "T")
+                if (lineasArchivo[i].Substring(0, 1) == "T")            // Busca la mecha actual
                 {
                     mechaActual = lineasArchivo[i].Substring(0, 3);
-                    foreach (Mecha m in listaMechas)
+                    foreach (Mecha mecha in listaMechas)        
                     {
-                        if (m.nombre == mechaActual)
+                        if (mecha.nombre == mechaActual)
                         {
-                            diametroMechaActual = m.diametro;
+                            diametroMechaActual = mecha.diametro;       // Le asigna el diametro a la mecha actual
                         }
                     }
                 }
-                if (lineasArchivo[i].Substring(0, 1) == "X")
+                if (lineasArchivo[i].Substring(0, 1) == "X")            // Busca agujeros a realizar por esa mecha
                 {
                     Agujero agujero = new Agujero();
                     agujero.x = Int32.Parse(lineasArchivo[i].Substring(1, 7));
@@ -143,9 +137,9 @@ namespace ObtencionDatos
 
         }
 
+        // Menu Puerto Serie
         private void puertoSerieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Application.Run(new Form2());
             Form2 form2 = new Form2();
             form2.Show();
         }
