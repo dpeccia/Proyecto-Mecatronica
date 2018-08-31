@@ -34,11 +34,13 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.puertoSerieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.calEjeZ = new System.Windows.Forms.Button();
+            this.calibrar = new System.Windows.Forms.Button();
             this.puertoSerie = new System.IO.Ports.SerialPort(this.components);
+            this.btnAbrirCerrar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,17 +81,25 @@
             // configuraciónToolStripMenuItem
             // 
             this.configuraciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.puertoSerieToolStripMenuItem});
+            this.toolStripMenuItem1});
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.configuraciónToolStripMenuItem.Text = "Configuración";
             // 
-            // puertoSerieToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.puertoSerieToolStripMenuItem.Name = "puertoSerieToolStripMenuItem";
-            this.puertoSerieToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.puertoSerieToolStripMenuItem.Text = "Puerto Serie";
-            this.puertoSerieToolStripMenuItem.Click += new System.EventHandler(this.puertoSerieToolStripMenuItem_Click);
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripComboBox1});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.toolStripMenuItem1.Text = "Puerto Serie";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
             // 
             // openFileDialog1
             // 
@@ -104,19 +114,24 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Path";
             // 
-            // calEjeZ
+            // calibrar
             // 
-            this.calEjeZ.Location = new System.Drawing.Point(479, 94);
-            this.calEjeZ.Name = "calEjeZ";
-            this.calEjeZ.Size = new System.Drawing.Size(99, 29);
-            this.calEjeZ.TabIndex = 3;
-            this.calEjeZ.Text = "Calibración Eje Z";
-            this.calEjeZ.UseVisualStyleBackColor = true;
-            this.calEjeZ.Click += new System.EventHandler(this.calEjeZ_Click);
+            this.calibrar.Location = new System.Drawing.Point(479, 94);
+            this.calibrar.Name = "calibrar";
+            this.calibrar.Size = new System.Drawing.Size(99, 29);
+            this.calibrar.TabIndex = 3;
+            this.calibrar.Text = "Calibración";
+            this.calibrar.UseVisualStyleBackColor = true;
+            this.calibrar.Click += new System.EventHandler(this.calibrar_Click);
             // 
-            // puertoSerie
+            // btnAbrirCerrar
             // 
-            this.puertoSerie.PortName = "COM2";
+            this.btnAbrirCerrar.Location = new System.Drawing.Point(304, 34);
+            this.btnAbrirCerrar.Name = "btnAbrirCerrar";
+            this.btnAbrirCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnAbrirCerrar.TabIndex = 0;
+            this.btnAbrirCerrar.Text = "Abrir Puerto";
+            this.btnAbrirCerrar.Click += new System.EventHandler(this.btnAbrirCerrar_Click_1);
             // 
             // Form1
             // 
@@ -124,7 +139,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 255);
-            this.Controls.Add(this.calEjeZ);
+            this.Controls.Add(this.btnAbrirCerrar);
+            this.Controls.Add(this.calibrar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
@@ -148,9 +164,11 @@
         private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button calEjeZ;
-        private System.IO.Ports.SerialPort puertoSerie;
-        private System.Windows.Forms.ToolStripMenuItem puertoSerieToolStripMenuItem;
+        private System.Windows.Forms.Button calibrar;
+        public System.IO.Ports.SerialPort puertoSerie;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.Button btnAbrirCerrar;
 
 
 

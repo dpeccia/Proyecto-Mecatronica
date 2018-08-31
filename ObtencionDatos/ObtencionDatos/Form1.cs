@@ -9,11 +9,13 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Collections;
+using System.IO.Ports;
 
 namespace ObtencionDatos
 {
     public partial class Form1 : Form
     {
+
         // Creamos una clase agujero, que en principio usamos como estructura
         public class Agujero
         {
@@ -27,6 +29,13 @@ namespace ObtencionDatos
         {
             public String nombre;
             public float diametro;
+        }
+
+        // Creamos una clase offset, que contiene las correcciones en xy y angulo
+        public class Offset
+        {
+            public int x, y;
+            public float angulo;
         }
 
         string pathArchivo;
@@ -127,12 +136,73 @@ namespace ObtencionDatos
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public Offset Calibracion(string punto1, string punto2)
         {
+            Offset correccion = new Offset();
+            Offset correccionPunto1 = new Offset();
+            Offset correccionPunto2 = new Offset();
 
+            AjusteEjeZ();
+            Enviar(punto1);
+            string caracterRecibido = Recibir();
+            while (caracterRecibido != "*")
+            {
+            }
+            Corregir();
+
+            Enviar(punto2);
+            caracterRecibido = Recibir();
+            while (caracterRecibido != "*")
+            {
+            }
+            Corregir();
+
+            correccion = CalculosOffset();
+            
+            return correccion;
         }
 
-        private void calEjeZ_Click(object sender, EventArgs e)
+        public void AjusteEjeZ()
+        { }
+
+        public void Enviar(string caracteres)
+        {
+            if (puertoSerie.IsOpen)
+
+            {
+                puertoSerie.Write(caracteres);
+            }
+        }
+
+        public string Recibir()
+        {
+            string readBuffer = "Nothing";
+            if (puertoSerie.IsOpen)
+            {
+                try
+                {
+                    readBuffer = puertoSerie.ReadExisting();
+                    //this.Invoke(new EventHandler();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show("Error" + e.Message);
+                }
+                
+            }
+            return readBuffer;
+        }
+
+        public void Corregir()
+        {
+            
+        }
+
+        public Offset CalculosOffset()
+        {
+            return new Offset();
+        }
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
@@ -143,5 +213,71 @@ namespace ObtencionDatos
             Form2 form2 = new Form2();
             form2.Show();
         }
+
+        private void calibrar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] Portnames = SerialPort.GetPortNames();
+            int i;
+
+            toolStripComboBox1.Items.Clear();
+
+            if (Portnames.Length > 0)
+            {
+                for (i = 0; i < Portnames.Length; i++)
+                {
+                    try
+                    {
+                        puertoSerie.PortName = Portnames[i];
+                        puertoSerie.Open();
+                        toolStripComboBox1.Items.Add(Portnames[i]);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se han detectado Puertos.");
+                //MessageBox("No se han detectado Puertos.");
+                //Me.Close();
+            }
+            if (puertoSerie.IsOpen == false)
+            {
+                puertoSerie.PortName = toolStripComboBox1.SelectedText;
+            }
+        }
+
+        private void btnAbrirCerrar_Click_1(object sender, EventArgs e)
+        {
+            if (puertoSerie.IsOpen)
+            {
+                puertoSerie.DiscardInBuffer();
+                puertoSerie.Close();
+                btnAbrirCerrar.Text = "Abrir Puerto";
+            }
+            else
+            {
+                try
+                {
+                    puertoSerie.Open();
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    MessageBox.Show("El puerto " + toolStripComboBox1.SelectedItem + " está ocupado");
+                }
+                btnAbrirCerrar.Text = "Cerrar Puerto";
+            }
+        }  
     }
 }

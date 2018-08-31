@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnAbrirCerrar = new System.Windows.Forms.Button();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.cboPuertos = new System.Windows.Forms.ComboBox();
             this.txtEnviar = new System.Windows.Forms.RichTextBox();
             this.txtRecibir = new System.Windows.Forms.RichTextBox();
@@ -38,22 +36,19 @@
             // 
             // btnAbrirCerrar
             // 
-            this.btnAbrirCerrar.Location = new System.Drawing.Point(197, 28);
+            this.btnAbrirCerrar.Location = new System.Drawing.Point(0, 0);
             this.btnAbrirCerrar.Name = "btnAbrirCerrar";
             this.btnAbrirCerrar.Size = new System.Drawing.Size(75, 23);
-            this.btnAbrirCerrar.TabIndex = 0;
-            this.btnAbrirCerrar.Text = "Abrir";
-            this.btnAbrirCerrar.UseVisualStyleBackColor = true;
-            this.btnAbrirCerrar.Click += new System.EventHandler(this.btnAbrirCerrar_Click);
+            this.btnAbrirCerrar.TabIndex = 5;
             // 
             // cboPuertos
             // 
-            this.cboPuertos.FormattingEnabled = true;
-            this.cboPuertos.Location = new System.Drawing.Point(19, 28);
+            /*
+            this.cboPuertos.Location = new System.Drawing.Point(0, 0);
             this.cboPuertos.Name = "cboPuertos";
-            this.cboPuertos.Size = new System.Drawing.Size(162, 21);
-            this.cboPuertos.TabIndex = 1;
-            this.cboPuertos.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cboPuertos.Size = new System.Drawing.Size(121, 21);
+            this.cboPuertos.TabIndex = 4;
+            this.cboPuertos.SelectedIndexChanged += new System.EventHandler(this.cboPuertos_SelectedIndexChanged);*/
             // 
             // txtEnviar
             // 
@@ -92,6 +87,5 @@
         private System.Windows.Forms.ComboBox cboPuertos;
         private System.Windows.Forms.RichTextBox txtEnviar;
         private System.Windows.Forms.RichTextBox txtRecibir;
-        internal System.IO.Ports.SerialPort serialPort1;
     }
 }
