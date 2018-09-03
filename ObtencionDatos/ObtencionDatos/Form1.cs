@@ -15,7 +15,6 @@ namespace ObtencionDatos
 {
     public partial class Form1 : Form
     {
-
         // Creamos una clase agujero, que en principio usamos como estructura
         public class Agujero
         {
@@ -37,21 +36,122 @@ namespace ObtencionDatos
             public int x, y;
             public float angulo;
         }
-
+        
+        string readBuffer;
         string pathArchivo;
+
+        Offset offsetGeneral;
+        Offset offsetReal;
+
+        Agujero extremo = new Agujero();
+        Agujero punto1 = new Agujero();
+        Agujero punto2 = new Agujero();
+
         public Form1()
         {
             InitializeComponent();
+            extremo.x = 500;
+            extremo.y = 500;
+        }
+        public void convertir_string_a_xy(Agujero agujero){}
+        public string convertir_xy_int_a_string(float x, float y)
+        {
+            string xy = "";
+            int x_nuevo, y_nuevo;
+            x_nuevo = (int) x * 10;
+            y_nuevo = (int) y * 10;
+            xy += "X";
+            if (x_nuevo >= 0)
+            {
+                xy += "+";
+            }
+            else
+            {
+                xy += "-";
+                x_nuevo *= -1;
+            }
+
+            if (x_nuevo > 9999999)
+                xy += x_nuevo.ToString();
+            else
+            {
+                if (x_nuevo > 999999)
+                {
+                    xy += "0"+x_nuevo.ToString();
+                }
+                else
+                {
+                    if (x_nuevo > 99999)
+                    {
+                        xy += "00" + x_nuevo.ToString();
+                    }
+                    else
+                    {
+                        if (x_nuevo > 9999)
+                        {
+                            xy += "000" + x_nuevo.ToString();
+                        }
+                        else
+                        {
+                            xy += "0000" + x_nuevo.ToString();
+                        }
+                    }
+                }
+            }
+            xy += "Y";
+            if (y_nuevo >= 0)
+            {
+                xy += "+";
+            }
+            else
+            {
+                xy += "-";
+                y_nuevo *= -1;
+            }
+            if (y_nuevo > 9999999)
+                xy += y_nuevo.ToString();
+            else
+            {
+                if (y_nuevo > 999999)
+                {
+                    xy += "0" + y_nuevo.ToString();
+                }
+                else
+                {
+                    if (y_nuevo > 99999)
+                    {
+                        xy += "00" + y_nuevo.ToString();
+                    }
+                    else
+                    {
+                        if (y_nuevo > 9999)
+                        {
+                            xy += "000" + y_nuevo.ToString();
+                        }
+                        else
+                        {
+                            xy += "0000" + y_nuevo.ToString();
+                        }
+                    }
+                }
+            }
+            return xy;
         }
 
-        // Menu
+        // Abrir archivo para leer
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
             pathArchivo = openFileDialog1.FileName;
-            label1.Text = pathArchivo;
-
-            Leer_Archivo(pathArchivo);
+            if (pathArchivo != "openFileDialog1")
+            {
+                label1.Text = pathArchivo;
+                Leer_Archivo(pathArchivo);
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
+            }
         }
 
         // Metodo de lectura del archivo en cuestion
@@ -128,61 +228,86 @@ namespace ObtencionDatos
                 if (lineasArchivo[i].Substring(0, 1) == "X")            // Busca agujeros a realizar por esa mecha
                 {
                     Agujero agujero = new Agujero();
-                    agujero.x = Int32.Parse(lineasArchivo[i].Substring(1, 7));
-                    agujero.y = Int32.Parse(lineasArchivo[i].Substring(9, 7));
+                    agujero.x = Int32.Parse(lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1));
+                    agujero.y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1)));
                     agujero.mecha = diametroMechaActual;
                     listaAgujeros.Add(agujero);
                 }
             }
         }
 
-        public Offset Calibracion(string punto1, string punto2)
+        public Offset Calibracion()
         {
-            Offset correccion = new Offset();
+            Offset correccion = new Offset();   
             Offset correccionPunto1 = new Offset();
             Offset correccionPunto2 = new Offset();
 
-            AjusteEjeZ();
-            Enviar(punto1);
-            string caracterRecibido = Recibir();
-            while (caracterRecibido != "*")
+            string punto1 = "";
+            string punto2 = "";
+            string caracterRecibido;
+
+            EnviarAgujero(extremo); // Envia agujero de extremo para prueba de profundidad
+            while (readBuffer != "E")      // Espera hasta recibir confirmacion de fin de secuencia
+            { }
+
+            Enviar(punto1); //Envia primer punto de referencia
+            //caracterRecibido = Recibir();
+            while (readBuffer != "*")
             {
             }
-            Corregir();
 
-            Enviar(punto2);
-            caracterRecibido = Recibir();
-            while (caracterRecibido != "*")
+            Enviar(punto2); //Envia segundo punto de referencia
+            //caracterRecibido = Recibir();
+            while (readBuffer != "*")
             {
             }
-            Corregir();
-
-            correccion = CalculosOffset();
             
+            correccion = CalculosOffset();
+            Corregir();
+
             return correccion;
         }
 
-        public void AjusteEjeZ()
-        { }
-
+        
+        
+        // Envio de datos
         public void Enviar(string caracteres)
         {
             if (puertoSerie.IsOpen)
-
             {
                 puertoSerie.Write(caracteres);
             }
         }
 
-        public string Recibir()
+        public void actualizarTexto(object sender, EventArgs e)
         {
-            string readBuffer = "Nothing";
-            if (puertoSerie.IsOpen)
+            txtRecibir.Text += txtRecibir;
+        }
+
+        // Recepcion de datos 
+        public void puertoSerie_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            if(puertoSerie.IsOpen)
             {
                 try
                 {
                     readBuffer = puertoSerie.ReadExisting();
-                    //this.Invoke(new EventHandler();
+                    this.Invoke(new EventHandler(actualizarTexto));
+                }
+                catch(Exception ex)
+                {
+                }
+            }
+        }
+        // Guarda caracteres en readBuffer
+        public string Recibir()
+        {
+            if(puertoSerie.IsOpen)
+            {
+                try
+                {
+                    readBuffer = puertoSerie.ReadExisting();
+                    //this.Invoke(new EventHandler());
                 }
                 catch(Exception e)
                 {
@@ -207,57 +332,45 @@ namespace ObtencionDatos
 
         }
 
-        // Menu Puerto Serie
+
         private void puertoSerieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+           
+        }
+        // Envia posicion de agujero
+        public void EnviarAgujero(Agujero agujero)
+        {
+            Enviar(convertir_xy_int_a_string(agujero.x, agujero.y));    // Envia posicion de cambio de mecha para bajar y hacer prueba de altura 
+            while (readBuffer != "*")      // Espera hasta recibir confirmacion de la posicion
+            { }
         }
 
         private void calibrar_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
+            Enviar("*");
+            Calibracion();
         }
 
         private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] Portnames = SerialPort.GetPortNames();
-            int i;
+            cboPuertoSerie.Items.Clear();
 
-            toolStripComboBox1.Items.Clear();
-
-            if (Portnames.Length > 0)
+            if (!puertoSerie.IsOpen)
             {
-                for (i = 0; i < Portnames.Length; i++)
+                try
                 {
-                    try
-                    {
-                        puertoSerie.PortName = Portnames[i];
-                        puertoSerie.Open();
-                        toolStripComboBox1.Items.Add(Portnames[i]);
-                    }
-                    catch (Exception ex)
-                    {
-                    }
+                    cboPuertoSerie.Items.AddRange(SerialPort.GetPortNames());
+
                 }
+                catch { }
             }
             else
             {
-                MessageBox.Show("No se han detectado Puertos.");
-                //MessageBox("No se han detectado Puertos.");
-                //Me.Close();
-            }
-            if (puertoSerie.IsOpen == false)
-            {
-                puertoSerie.PortName = toolStripComboBox1.SelectedText;
+                // Si el puerto esta abierto, no muestra la lista
             }
         }
 
+        // TODO: Revisar la seleccion de puerto, ahora hay que seleccionar 2 veces para que lo tome bien
         private void btnAbrirCerrar_Click_1(object sender, EventArgs e)
         {
             if (puertoSerie.IsOpen)
@@ -270,14 +383,35 @@ namespace ObtencionDatos
             {
                 try
                 {
+                    puertoSerie.PortName = cboPuertoSerie.SelectedItem.ToString();
                     puertoSerie.Open();
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    MessageBox.Show("El puerto " + toolStripComboBox1.SelectedItem + " está ocupado");
+                    MessageBox.Show("El puerto " + cboPuertoSerie.SelectedItem + " está ocupado");
+                }
+                catch (Exception ex)
+                {
                 }
                 btnAbrirCerrar.Text = "Cerrar Puerto";
             }
-        }  
+        }
+        
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+        private void mmCorreccion_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            Enviar(txtEscribir.Text);
+            txtEscribir.Text = "";
+        }
+
+        
     }
 }

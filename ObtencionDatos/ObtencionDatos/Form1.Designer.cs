@@ -30,18 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menu = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripMenuItemConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripPuertoSerie = new System.Windows.Forms.ToolStripMenuItem();
+            this.cboPuertoSerie = new System.Windows.Forms.ToolStripComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.calibrar = new System.Windows.Forms.Button();
             this.puertoSerie = new System.IO.Ports.SerialPort(this.components);
             this.btnAbrirCerrar = new System.Windows.Forms.Button();
-            this.menuStrip1.SuspendLayout();
+            this.correccionYmas = new System.Windows.Forms.Button();
+            this.correccionXmas = new System.Windows.Forms.Button();
+            this.correccionXmenos = new System.Windows.Forms.Button();
+            this.correccionYmenos = new System.Windows.Forms.Button();
+            this.mmCorreccion = new System.Windows.Forms.MaskedTextBox();
+            this.txtRecibir = new System.Windows.Forms.TextBox();
+            this.txtEscribir = new System.Windows.Forms.TextBox();
+            this.btnEnviar = new System.Windows.Forms.Button();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -52,16 +60,16 @@
             this.textBox1.Size = new System.Drawing.Size(445, 149);
             this.textBox1.TabIndex = 0;
             // 
-            // menuStrip1
+            // menu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.configuraciónToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(590, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.toolStripMenuItemConfig});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(590, 24);
+            this.menu.TabIndex = 1;
+            this.menu.Text = "menu";
             // 
             // archivoToolStripMenuItem
             // 
@@ -78,32 +86,27 @@
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
-            // configuraciónToolStripMenuItem
+            // toolStripMenuItemConfig
             // 
-            this.configuraciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
-            this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.configuraciónToolStripMenuItem.Text = "Configuración";
+            this.toolStripMenuItemConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripPuertoSerie});
+            this.toolStripMenuItemConfig.Name = "toolStripMenuItemConfig";
+            this.toolStripMenuItemConfig.Size = new System.Drawing.Size(95, 20);
+            this.toolStripMenuItemConfig.Text = "Configuración";
             // 
-            // toolStripMenuItem1
+            // toolStripPuertoSerie
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox1});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
-            this.toolStripMenuItem1.Text = "Puerto Serie";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.toolStripPuertoSerie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cboPuertoSerie});
+            this.toolStripPuertoSerie.Name = "toolStripPuertoSerie";
+            this.toolStripPuertoSerie.Size = new System.Drawing.Size(152, 22);
+            this.toolStripPuertoSerie.Text = "Puerto Serie";
             // 
-            // toolStripComboBox1
+            // cboPuertoSerie
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
-            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.cboPuertoSerie.Name = "cboPuertoSerie";
+            this.cboPuertoSerie.Size = new System.Drawing.Size(121, 23);
+            this.cboPuertoSerie.Click += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -126,12 +129,75 @@
             // 
             // btnAbrirCerrar
             // 
-            this.btnAbrirCerrar.Location = new System.Drawing.Point(304, 34);
+            this.btnAbrirCerrar.Location = new System.Drawing.Point(479, 34);
             this.btnAbrirCerrar.Name = "btnAbrirCerrar";
-            this.btnAbrirCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnAbrirCerrar.Size = new System.Drawing.Size(102, 23);
             this.btnAbrirCerrar.TabIndex = 0;
             this.btnAbrirCerrar.Text = "Abrir Puerto";
             this.btnAbrirCerrar.Click += new System.EventHandler(this.btnAbrirCerrar_Click_1);
+            // 
+            // correccionYmas
+            // 
+            this.correccionYmas.Location = new System.Drawing.Point(513, 135);
+            this.correccionYmas.Name = "correccionYmas";
+            this.correccionYmas.Size = new System.Drawing.Size(34, 34);
+            this.correccionYmas.TabIndex = 4;
+            this.correccionYmas.UseVisualStyleBackColor = true;
+            // 
+            // correccionXmas
+            // 
+            this.correccionXmas.Location = new System.Drawing.Point(548, 167);
+            this.correccionXmas.Name = "correccionXmas";
+            this.correccionXmas.Size = new System.Drawing.Size(34, 34);
+            this.correccionXmas.TabIndex = 5;
+            this.correccionXmas.UseVisualStyleBackColor = true;
+            // 
+            // correccionXmenos
+            // 
+            this.correccionXmenos.Location = new System.Drawing.Point(478, 167);
+            this.correccionXmenos.Name = "correccionXmenos";
+            this.correccionXmenos.Size = new System.Drawing.Size(34, 34);
+            this.correccionXmenos.TabIndex = 13;
+            // 
+            // correccionYmenos
+            // 
+            this.correccionYmenos.Location = new System.Drawing.Point(513, 201);
+            this.correccionYmenos.Name = "correccionYmenos";
+            this.correccionYmenos.Size = new System.Drawing.Size(34, 34);
+            this.correccionYmenos.TabIndex = 7;
+            this.correccionYmenos.UseVisualStyleBackColor = true;
+            // 
+            // mmCorreccion
+            // 
+            this.mmCorreccion.Location = new System.Drawing.Point(515, 175);
+            this.mmCorreccion.Mask = "99.9";
+            this.mmCorreccion.Name = "mmCorreccion";
+            this.mmCorreccion.Size = new System.Drawing.Size(29, 20);
+            this.mmCorreccion.TabIndex = 12;
+            // 
+            // txtRecibir
+            // 
+            this.txtRecibir.Location = new System.Drawing.Point(12, 68);
+            this.txtRecibir.Name = "txtRecibir";
+            this.txtRecibir.Size = new System.Drawing.Size(100, 20);
+            this.txtRecibir.TabIndex = 9;
+            // 
+            // txtEscribir
+            // 
+            this.txtEscribir.Location = new System.Drawing.Point(175, 68);
+            this.txtEscribir.Name = "txtEscribir";
+            this.txtEscribir.Size = new System.Drawing.Size(100, 20);
+            this.txtEscribir.TabIndex = 10;
+            // 
+            // btnEnviar
+            // 
+            this.btnEnviar.Location = new System.Drawing.Point(281, 66);
+            this.btnEnviar.Name = "btnEnviar";
+            this.btnEnviar.Size = new System.Drawing.Size(75, 23);
+            this.btnEnviar.TabIndex = 11;
+            this.btnEnviar.Text = "Enviar";
+            this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // Form1
             // 
@@ -139,17 +205,25 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 255);
+            this.Controls.Add(this.btnEnviar);
+            this.Controls.Add(this.txtEscribir);
+            this.Controls.Add(this.txtRecibir);
+            this.Controls.Add(this.mmCorreccion);
+            this.Controls.Add(this.correccionYmenos);
+            this.Controls.Add(this.correccionXmenos);
+            this.Controls.Add(this.correccionXmas);
+            this.Controls.Add(this.correccionYmas);
             this.Controls.Add(this.btnAbrirCerrar);
             this.Controls.Add(this.calibrar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menu);
+            this.MainMenuStrip = this.menu;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,20 +232,34 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button calibrar;
         public System.IO.Ports.SerialPort puertoSerie;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.Button btnAbrirCerrar;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfig;
+        public System.Windows.Forms.ToolStripMenuItem toolStripPuertoSerie;
+        public System.Windows.Forms.ToolStripComboBox cboPuertoSerie;
+        private System.Windows.Forms.Button correccionYmas;
+        private System.Windows.Forms.Button correccionXmas;
+        private System.Windows.Forms.Button correccionXmenos;
+        private System.Windows.Forms.Button correccionYmenos;
+        public System.Windows.Forms.MaskedTextBox mmCorreccion;
+        private System.Windows.Forms.TextBox txtRecibir;
+        private System.Windows.Forms.TextBox txtEscribir;
+        private System.Windows.Forms.Button btnEnviar;
 
 
 
+
+        public System.EventHandler configuracionToolStripMenuItem_Click { get; set; }
+
+        public System.EventHandler toolStripMenuItem1_Click { get; set; }
+
+        public System.EventHandler correccionXmas_Click { get; set; }
     }
 }
 
