@@ -49,6 +49,8 @@
             this.txtRecibir = new System.Windows.Forms.TextBox();
             this.txtEscribir = new System.Windows.Forms.TextBox();
             this.btnEnviar = new System.Windows.Forms.Button();
+            this.calibracionLista = new System.Windows.Forms.Button();
+            this.btnComenzar = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +101,7 @@
             this.toolStripPuertoSerie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cboPuertoSerie});
             this.toolStripPuertoSerie.Name = "toolStripPuertoSerie";
-            this.toolStripPuertoSerie.Size = new System.Drawing.Size(152, 22);
+            this.toolStripPuertoSerie.Size = new System.Drawing.Size(137, 22);
             this.toolStripPuertoSerie.Text = "Puerto Serie";
             // 
             // cboPuertoSerie
@@ -119,13 +121,18 @@
             // 
             // calibrar
             // 
-            this.calibrar.Location = new System.Drawing.Point(479, 94);
+            this.calibrar.Enabled = false;
+            this.calibrar.Location = new System.Drawing.Point(479, 73);
             this.calibrar.Name = "calibrar";
             this.calibrar.Size = new System.Drawing.Size(99, 29);
             this.calibrar.TabIndex = 3;
             this.calibrar.Text = "Calibración";
             this.calibrar.UseVisualStyleBackColor = true;
             this.calibrar.Click += new System.EventHandler(this.calibrar_Click);
+            // 
+            // puertoSerie
+            // 
+            this.puertoSerie.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.puertoSerie_DataReceived_1);
             // 
             // btnAbrirCerrar
             // 
@@ -138,38 +145,48 @@
             // 
             // correccionYmas
             // 
-            this.correccionYmas.Location = new System.Drawing.Point(513, 135);
+            this.correccionYmas.Enabled = false;
+            this.correccionYmas.Location = new System.Drawing.Point(513, 114);
             this.correccionYmas.Name = "correccionYmas";
             this.correccionYmas.Size = new System.Drawing.Size(34, 34);
             this.correccionYmas.TabIndex = 4;
             this.correccionYmas.UseVisualStyleBackColor = true;
+            this.correccionYmas.Click += new System.EventHandler(this.correccionYmas_Click);
             // 
             // correccionXmas
             // 
-            this.correccionXmas.Location = new System.Drawing.Point(548, 167);
+            this.correccionXmas.Enabled = false;
+            this.correccionXmas.Location = new System.Drawing.Point(548, 146);
             this.correccionXmas.Name = "correccionXmas";
             this.correccionXmas.Size = new System.Drawing.Size(34, 34);
             this.correccionXmas.TabIndex = 5;
             this.correccionXmas.UseVisualStyleBackColor = true;
+            this.correccionXmas.Click += new System.EventHandler(this.correccionXmenos_Click);
             // 
             // correccionXmenos
             // 
-            this.correccionXmenos.Location = new System.Drawing.Point(478, 167);
+            this.correccionXmenos.Enabled = false;
+            this.correccionXmenos.Location = new System.Drawing.Point(478, 146);
             this.correccionXmenos.Name = "correccionXmenos";
             this.correccionXmenos.Size = new System.Drawing.Size(34, 34);
             this.correccionXmenos.TabIndex = 13;
+            this.correccionXmenos.Click += new System.EventHandler(this.correccionXmenos_Click);
             // 
             // correccionYmenos
             // 
-            this.correccionYmenos.Location = new System.Drawing.Point(513, 201);
+            this.correccionYmenos.Enabled = false;
+            this.correccionYmenos.Location = new System.Drawing.Point(513, 180);
             this.correccionYmenos.Name = "correccionYmenos";
             this.correccionYmenos.Size = new System.Drawing.Size(34, 34);
             this.correccionYmenos.TabIndex = 7;
             this.correccionYmenos.UseVisualStyleBackColor = true;
+            this.correccionYmenos.Click += new System.EventHandler(this.correccionYmenos_Click);
             // 
             // mmCorreccion
             // 
-            this.mmCorreccion.Location = new System.Drawing.Point(515, 175);
+            this.mmCorreccion.Culture = new System.Globalization.CultureInfo("en-US");
+            this.mmCorreccion.Enabled = false;
+            this.mmCorreccion.Location = new System.Drawing.Point(515, 154);
             this.mmCorreccion.Mask = "99.9";
             this.mmCorreccion.Name = "mmCorreccion";
             this.mmCorreccion.Size = new System.Drawing.Size(29, 20);
@@ -199,12 +216,34 @@
             this.btnEnviar.UseVisualStyleBackColor = true;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
+            // calibracionLista
+            // 
+            this.calibracionLista.Enabled = false;
+            this.calibracionLista.Location = new System.Drawing.Point(494, 220);
+            this.calibracionLista.Name = "calibracionLista";
+            this.calibracionLista.Size = new System.Drawing.Size(75, 23);
+            this.calibracionLista.TabIndex = 14;
+            this.calibracionLista.Text = "Siguiente";
+            this.calibracionLista.UseVisualStyleBackColor = true;
+            this.calibracionLista.Click += new System.EventHandler(this.calibracionLista_Click);
+            // 
+            // btnComenzar
+            // 
+            this.btnComenzar.Location = new System.Drawing.Point(382, 65);
+            this.btnComenzar.Name = "btnComenzar";
+            this.btnComenzar.Size = new System.Drawing.Size(75, 23);
+            this.btnComenzar.TabIndex = 15;
+            this.btnComenzar.Text = "Comenzar";
+            this.btnComenzar.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 255);
+            this.Controls.Add(this.btnComenzar);
+            this.Controls.Add(this.calibracionLista);
             this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.txtEscribir);
             this.Controls.Add(this.txtRecibir);
@@ -251,15 +290,12 @@
         private System.Windows.Forms.TextBox txtRecibir;
         private System.Windows.Forms.TextBox txtEscribir;
         private System.Windows.Forms.Button btnEnviar;
-
-
-
+        private System.Windows.Forms.Button calibracionLista;
+        private System.Windows.Forms.Button btnComenzar;
 
         public System.EventHandler configuracionToolStripMenuItem_Click { get; set; }
-
+        
         public System.EventHandler toolStripMenuItem1_Click { get; set; }
-
-        public System.EventHandler correccionXmas_Click { get; set; }
     }
 }
 

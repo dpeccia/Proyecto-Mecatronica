@@ -10,7 +10,8 @@ Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x8
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
-Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csprojResolveAssemblyReference.cache
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
-Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.Cache
+Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
