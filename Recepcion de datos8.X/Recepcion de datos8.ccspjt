@@ -1,0 +1,16 @@
+[PROJECT]
+Target=build\default\production\Recepcion de datos8.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=build\default\production\Recepcion de datos8.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[build\default\production\Recepcion de datos8.c]
+Type=4
+[mru-list]
+1=build\default\production\Recepcion de datos8.c
+[Units]
+Count=1
+1=Recepcion de datos8 (main)

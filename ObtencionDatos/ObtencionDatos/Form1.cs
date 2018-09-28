@@ -39,6 +39,7 @@ namespace ObtencionDatos
         string readBuffer;
         string pathArchivo;
         int state;
+        bool archivoAbierto;
 
         //Offset offsetGeneral;
         Offset offsetReal = new Offset();
@@ -173,14 +174,14 @@ namespace ObtencionDatos
                 MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
             }
         }
-
+        public ArrayList listaAgujeros = new ArrayList();
+        public ArrayList listaMechas = new ArrayList();
         // Metodo de lectura del archivo en cuestion
         public void Leer_Archivo(string path)
         {
             string textoArchivo = null;
             string[] lineasArchivo = null;
-            ArrayList listaAgujeros = new ArrayList();
-            ArrayList listaMechas = new ArrayList();
+            
             int cantMechas = 0;
             int separador = 0;
             bool igualPorciento = false;
@@ -192,14 +193,20 @@ namespace ObtencionDatos
                 System.IO.File.OpenRead(path);
                 textoArchivo = System.IO.File.ReadAllText(path);
                 lineasArchivo = System.IO.File.ReadAllLines(path);
+                archivoAbierto = true;
             }
             catch (FileNotFoundException e)
             {
                 Console.WriteLine("No se pudo abrir el archivo");
+                return;
             }
-
+            catch (ArgumentException e)
+            {
+                return;
+            }
+            
             textBox1.Text += Environment.NewLine;
-        
+
             for (int i = 0; i < lineasArchivo.Length; i++)       // Cuenta cantidad de mechas
             {
                 if (lineasArchivo[i] == "%")
@@ -231,7 +238,7 @@ namespace ObtencionDatos
             String mechaActual;
             Mecha auxMecha = new Mecha();
             float diametroMechaActual = 0;
-            
+
             for (int i = separador; i < lineasArchivo.Length; i++)      // Recorre el archivo
             {
                 if (lineasArchivo[i].Substring(0, 1) == "T")            // Busca la mecha actual
@@ -279,19 +286,31 @@ namespace ObtencionDatos
             Agujero punto1 = new Agujero();
             Agujero punto2 = new Agujero();
             Agujero punto2real = new Agujero();
-
-            enableButtons(true);
+            Mecha mechaEnviar;
+            string mecha;
+            //enableButtons(true);
             mmCorreccion.Enabled = true;
 
             calibrar.Enabled = false;
 
             // Calibración eje z
-            EnviarAgujero(extremo); // Envia agujero de extremo para prueba de profundidad
-            while (readBuffer != "E")      // Espera hasta recibir confirmacion de fin de secuencia
+            //EnviarAgujero(extremo); // Envia agujero de extremo para prueba de profundidad
+            while (readBuffer != "M")      // Espera hasta recibir confirmacion de fin de secuencia
             {
                 Recibir();
             }
+            mechaEnviar = (Mecha)listaMechas[0];    
+            mecha = "M";
+            mecha += Convert.ToString(mechaEnviar.diametro);
+            while (mecha.Length < 6)
+            {
+                mecha += "0";
+            }
+            Enviar(mecha);  //Envia mecha para altura z
 
+            enableButtons(true);
+
+            Enviar("A");    //Inicio ciclo ajuste
             // Calibación plano xy
             Enviar(punto1.xy); // Envia primer punto de referencia
             agujeroAux = punto1;    // Guarda punto en variable auxiliar
@@ -299,11 +318,11 @@ namespace ObtencionDatos
             {
                 Recibir();
             }
-
+            Enviar("A");    //Fin ciclo ajuste
             calibracionLista.Enabled  = true;
             /*
             while (!ready) // Si se hace click en siguiente, continúa
-            {
+            {F
                 Recibir();
             }*/
             /*
@@ -415,10 +434,10 @@ namespace ObtencionDatos
         public void EnviarAgujero(Agujero agujero)
         {
             Enviar(convertir_xy_int_a_string(agujero.x, agujero.y));    // Envia posicion de cambio de mecha para bajar y hacer prueba de altura 
-            while (readBuffer != "*")      // Espera hasta recibir confirmacion de la posicion
+            /*while (readBuffer != "*")      // Espera hasta recibir confirmacion de la posicion
             {
                 Recibir();
-            }
+            }*/
             //resetReadBuffer();
         }
 
@@ -447,7 +466,7 @@ namespace ObtencionDatos
             }
         }
 
-        // TODO: Revisar la seleccion de puerto, ahora hay que seleccionar 2 veces para que lo tome bien
+        
         private void btnAbrirCerrar_Click_1(object sender, EventArgs e)
         {
             if (puertoSerie.IsOpen)
@@ -545,6 +564,19 @@ namespace ObtencionDatos
             }
         }
 
+        private void Ciclo_Agujereado()
+        {
+            Enviar("*");
+            foreach (Agujero agujero in listaAgujeros)
+            {
+                EnviarAgujero(agujero);
+                while (readBuffer != "F")
+                {
+                    Recibir();
+                }
+            }
+        }
+
         private void correccionYmas_Click(object sender, EventArgs e)
         {
             agujeroAux.y += float.Parse(mmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
@@ -569,5 +601,9 @@ namespace ObtencionDatos
             EnviarAgujero(agujeroAux);
         }
 
+        private void btnComenzar_Click(object sender, EventArgs e)
+        {
+            Ciclo_Agujereado();
+        }
     }
 }

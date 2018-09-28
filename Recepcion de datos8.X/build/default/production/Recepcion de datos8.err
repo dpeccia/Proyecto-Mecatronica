@@ -1,0 +1,7 @@
+>>> Warning 208 "Recepcion de datos8.c" Line 233(1,9): Function not void and does not return a value  ext_isr1
+>>> Warning 203 "Recepcion de datos8.c" Line 379(1,1): Condition always TRUE
+>>> Warning 216 "Recepcion de datos8.c" Line 501(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "Recepcion de datos8.c" Line 501(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_us1)
+      Memory usage:   ROM=23%      RAM=6% - 8%
+      0 Errors,  4 Warnings.
+Build Successful.

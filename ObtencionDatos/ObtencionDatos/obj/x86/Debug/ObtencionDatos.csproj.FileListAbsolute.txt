@@ -15,3 +15,14 @@ Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x8
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
 Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Proyecto\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\GUI3\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb

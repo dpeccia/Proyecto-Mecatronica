@@ -1,0 +1,307 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019     @INTERRUPT_AREA
+01A-01B strtok.save
+01C-01F _Randseed
+020     lcd_line
+021     ch
+022-025 mech
+026-02C datox
+02D-033 datoy
+034     i
+035     j
+036     h
+037     flagfin
+038     salir
+039     contador
+03A-03D x
+03E-041 y
+042-045 xini
+046-049 yini
+04A-04D pasosx
+04E-051 pasosy
+052-055 broca
+056-059 pasosxflot
+05A-05D pasosyflot
+05E     flagx
+05F     flagy
+060     flagxy
+061     flagcomienzo
+062     flagmecha
+063     flagboton
+064.0   flagpaquete
+064.1   flagajuste
+065-068 pasosz
+069-06C zini
+06D-070 z
+071-074 alturamecha
+075-076 strtof.s
+075-078 @SFTOI.P1
+075-078 @PRINTF_L32D_356FPFPF.P2
+075     lcd_init.i
+075-078 @FLT.P1
+075-078 atan2.y
+075-078 @MUL3232.P1
+075     @PSTRINGCN_356.P2
+075     conversionpasos.@SCRATCH1
+075     perforacion.@SCRATCH1
+075     profundidadmecha.@SCRATCH1
+075     @PSTRINGC_356.@SCRATCH1
+075     ajusteceroz.@SCRATCH1
+075     ajustedecero.@SCRATCH1
+075     MAIN.@SCRATCH1
+075     @PSTRINGC_9600_31766_31767.@SCRATCH1
+076     lcd_init.@SCRATCH1
+076     conversionpasos.@SCRATCH2
+076     @PSTRINGC_356.@SCRATCH2
+076     ajustedecero.@SCRATCH2
+076     @PSTRINGCN_356.@SCRATCH1
+076     @PSTRINGC_9600_31766_31767.@SCRATCH2
+077-078 strtof.endptr
+077     conversionpasos.@SCRATCH3
+077     @PSTRINGCN_356.@SCRATCH2
+078     conversionpasos.@SCRATCH4
+079-07C strtof.pow10
+079     @PRINTF_L32D_356FPFPF.P1
+079-07C @FLT.P2
+079-07C @MUL3232.P3
+079-07C atan2.x
+079-07C @SDTOF.P1
+07A     @PRINTF_L32D_356FPFPF.@SCRATCH1
+07B     @PRINTF_L32D_356FPFPF.@SCRATCH2
+07C     @PRINTF_L32D_356FPFPF.@SCRATCH3
+07D-080 atan2.z
+07D-080 strtof.result
+07D     @MUL3232.@SCRATCH1
+07D     @FLT.@SCRATCH1
+07D     @SDTOF.@SCRATCH1
+07D     @PRINTF_L32D_356FPFPF.@SCRATCH4
+07E     @MUL3232.@SCRATCH2
+07E     @FLT.@SCRATCH2
+07E     @PRINTF_L32D_356FPFPF.@SCRATCH5
+07F     @MUL3232.@SCRATCH3
+07F     @PRINTF_L32D_356FPFPF.@SCRATCH6
+080     @MUL3232.@SCRATCH4
+080     @PRINTF_L32D_356FPFPF.@SCRATCH7
+081.0   strtof.skip
+081.0   atan2.sign
+081.1   strtof.sign
+081.2   strtof.point
+081     @MUL3232.@SCRATCH5
+081     @PRINTF_L32D_356FPFPF.@SCRATCH8
+082     atan2.quad
+082-085 @DIV3232.P1
+082     strtof.c
+082-085 @FTOSD.P1
+082     lcd_putc.c
+082     @MUL3232.@SCRATCH6
+083     lcd_gotoxy.x
+083     strtof.ptr
+084-087 @MULFF.P1
+084     lcd_gotoxy.y
+084     strtof.@SCRATCH1
+085     lcd_gotoxy.address
+085     strtof.@SCRATCH2
+086-089 @DIV3232.P1
+086     strtof.@SCRATCH3
+086     lcd_gotoxy.@SCRATCH1
+086     @FTOSD.@SCRATCH1
+087     lcd_send_byte.address
+087     strtof.@SCRATCH4
+088-08B @DIVFF.P1
+088-08B @MULFF.P2
+088     lcd_send_byte.n
+088-089 @ITOF.P1
+088-08B @ADDFF.P2
+089     lcd_send_byte.@SCRATCH1
+08A     lcd_send_nibble.nibble
+08A     @DIV3232.@SCRATCH1
+08B     @DIV3232.@SCRATCH2
+08C-08F @DIVFF.P1
+08C-08F @ADDFF.P2
+08C     @MULFF.@SCRATCH1
+08C     @DIV3232.@SCRATCH3
+08D     @MULFF.@SCRATCH2
+08D     @DIV3232.@SCRATCH4
+08E     @MULFF.@SCRATCH3
+08E     @DIV3232.@SCRATCH5
+090     @ADDFF.@SCRATCH1
+090     @DIVFF.@SCRATCH1
+091     @ADDFF.@SCRATCH2
+091     @DIVFF.@SCRATCH2
+092     @ADDFF.@SCRATCH3
+092     @DIVFF.@SCRATCH3
+093     @ADDFF.@SCRATCH4
+093     @DIVFF.@SCRATCH4
+094     @ADDFF.@SCRATCH5
+094     @DIVFF.@SCRATCH5
+095     @ADDFF.@SCRATCH6
+095     @DIVFF.@SCRATCH6
+096     @ADDFF.@SCRATCH7
+097     @ADDFF.@SCRATCH8
+098     @delay_us1.P1
+098     @delay_ms1.P2
+098     INTEXT_isr.@SCRATCH1
+098     serial_isr.@SCRATCH1
+099     serial_isr.@SCRATCH2
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+10AA  @MULFF
+119C  @ITOF
+0AB6  @ADDFF
+08E6  @DIVFF
+0D58  @MUL3232
+11D2  strtof
+0180  @delay_ms1
+01A8  @delay_us1
+0166  @PUTCHARI_BIU_1
+00D2  LCD_INIT_STRING
+0586  lcd_send_nibble
+05D4  lcd_send_byte
+0618  lcd_init
+0690  lcd_gotoxy
+06D2  lcd_putc
+0A40  @FLT
+0D20  @SFTOI
+1744  moverz
+0DAC  conversionpasos
+0890  @SDTOF
+1884  perforacion
+1452  @FTOSD
+1042  moverxy
+105E  posicionmecha
+169E  profundidadmecha
+00E6  @const525
+0728  @PSTRINGC_356
+00F4  @const527
+0748  ajusteceroz
+010A  @const529
+011A  @const530
+07A0  ajustedecero
+0120  @const532
+0132  @const533
+0144  @const534
+0156  @const535
+015A  @const536
+015E  @const537
+0162  @const538
+140A  mecha
+016E  ext_isr1
+01C8  INTEXT_isr
+0246  TIMER0_isr
+0316  serial_isr
+196C  MAIN
+041A  @const547
+042A  @const548
+043E  @const549
+0452  @const550
+045E  @const551
+1432  @PSTRINGCN_356
+1490  @DIV3232
+151E  @PRINTF_L32D_356FPFPF
+0476  @const560
+048C  @const561
+04A0  @const562
+04AE  @const563
+04C2  @const564
+04D8  @const565
+04EC  @const566
+0500  @const567
+0514  @const568
+0528  @const569
+0538  @const570
+1862  @PSTRINGC_9600_31766_31767
+053C  @const572
+0550  @const573
+0566  @const574
+0574  @const575
+0578  @const576
+196C  @cinit1
+1994  @cinit2
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    Z:\Mecatronica\Alumnos\Segundo\Proyecto\GUI\Recepcion de datos8.X\
+
+Project Files:
+    Recepcion de datos8.c                                   [19-sep-18 11:54  CRC=7E5B2587]
+    C:\PROGRA~2\PICC\devices\18F4550.h                      [28-feb-12 13:44  CRC=DCD1BB11]
+    C:\PROGRA~2\PICC\drivers\stdlib.h                       [08-jun-11 14:39  CRC=0B6669CF]
+    C:\PROGRA~2\PICC\drivers\stddef.h                       [16-jul-10 09:27  CRC=897CEC6C]
+    C:\PROGRA~2\PICC\drivers\string.h                       [14-jul-11 10:13  CRC=23EDEC8F]
+    C:\PROGRA~2\PICC\drivers\ctype.h                        [03-ene-08 13:55  CRC=2D1F019F]
+    LCD420-FLEX.c                                           [09-sep-18 10:48  CRC=A70E8D34]
+    C:\PROGRA~2\PICC\drivers\MATH.h                         [13-jun-11 12:45  CRC=56D86DB6]
+
+Source signature=95DC8DA1
+
+Units:
+    Recepcion de datos8 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Predefined symbols:
+       #define __18F4550 1
+
+Output Files:
+    Errors:      build\default\production\Recepcion de datos8.err
+    Ext Symbols: build\default\production\Recepcion de datos8.esym
+    INHX32:      build\default\production\Recepcion de datos8.hex
+    Symbols:     build\default\production\Recepcion de datos8.sym
+    List:        build\default\production\Recepcion de datos8.lst
+    Debug/COFF:  build\default\production\Recepcion de datos8.cof
+    Project:     Recepcion de datos8.PJT
+    Call Tree:   build\default\production\Recepcion de datos8.tre
+    Statistics:  build\default\production\Recepcion de datos8.STA

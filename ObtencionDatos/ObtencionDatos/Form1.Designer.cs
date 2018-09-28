@@ -84,7 +84,7 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
@@ -101,7 +101,7 @@
             this.toolStripPuertoSerie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cboPuertoSerie});
             this.toolStripPuertoSerie.Name = "toolStripPuertoSerie";
-            this.toolStripPuertoSerie.Size = new System.Drawing.Size(137, 22);
+            this.toolStripPuertoSerie.Size = new System.Drawing.Size(152, 22);
             this.toolStripPuertoSerie.Text = "Puerto Serie";
             // 
             // cboPuertoSerie
@@ -235,6 +235,7 @@
             this.btnComenzar.TabIndex = 15;
             this.btnComenzar.Text = "Comenzar";
             this.btnComenzar.UseVisualStyleBackColor = true;
+            this.btnComenzar.Click += new System.EventHandler(this.btnComenzar_Click);
             // 
             // Form1
             // 
