@@ -1,0 +1,7 @@
+Z:\Profesores\Ciganotto\Robot 2018\Recepcion de datos12.X\Recepcion de datos12.c:221:1:  Warning#208  Function not void and does not return a value  ext_isr1
+Z:\Profesores\Ciganotto\Robot 2018\Recepcion de datos12.X\Recepcion de datos12.c:374:1:  Warning#203  Condition always TRUE
+Z:\Profesores\Ciganotto\Robot 2018\Recepcion de datos12.X\Recepcion de datos12.c:515:1:  Warning#216  Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+Z:\Profesores\Ciganotto\Robot 2018\Recepcion de datos12.X\Recepcion de datos12.c:515:1:  Warning#216  Interrupts disabled during call to prevent re-entrancy:  (@delay_us1)
+      Memory usage:   ROM=24%      RAM=6% - 8%
+      0 Errors,  4 Warnings.
+Build Successful.

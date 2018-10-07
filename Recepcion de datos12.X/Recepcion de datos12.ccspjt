@@ -1,0 +1,16 @@
+[PROJECT]
+Target=build\default\production\Recepcion de datos12.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=build\default\production\Recepcion de datos12.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;Z:\Profesores\Ciganotto\Program Files (x86)\PICC\Devices\;Z:\Profesores\Ciganotto\Program Files (x86)\PICC\Drivers\;X:\Profesores\Ciganotto\Program Files (x86)\PICC\Devices\;X:\Profesores\Ciganotto\Program Files (x86)\PICC\Drivers\;C:\PROGRA~2\PICC\devices\;C:\PROGRA~2\PICC\drivers\
+[build\default\production\Recepcion de datos12.c]
+Type=4
+[mru-list]
+1=build\default\production\Recepcion de datos12.c
+[Units]
+Count=1
+1=Recepcion de datos12 (main)
