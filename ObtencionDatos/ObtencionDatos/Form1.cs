@@ -14,6 +14,7 @@ namespace ObtencionDatos
 {
     public partial class Form1 : Form
     {
+        public static ArrayList listaAgujeros = new ArrayList();
         // Creamos una clase agujero, que en principio usamos como estructura
         public class Agujero
         {
@@ -67,7 +68,36 @@ namespace ObtencionDatos
         {
 
         }
-
+        public void PuntosExtremos()
+        {
+            Mecha mechaAux1 = (Mecha)listaMechas[0];
+            Mecha mechaAux2 = (Mecha)listaMechas[1];
+            foreach (Agujero i in listaAgujeros)
+            {
+                if (i.mecha == mechaAux1.diametro)
+                {
+                    if (punto1.x > i.x)
+                    {
+                        punto1 = i;
+                    }
+                    else if (punto1.x == i.x && punto1.y < i.y)
+                    {
+                        punto1 = i;
+                    }
+                }
+                if (i.mecha == mechaAux1.diametro || i.mecha == mechaAux2.diametro)
+                {
+                    if (punto2.y >= i.y)
+                    {
+                        punto2 = i;
+                    }
+                    else if (punto2.x == i.x && punto2.y < i.y)
+                    {
+                        punto2 = i;
+                    }
+                }
+            }
+        }
         public string convertir_xy_int_a_string(float x, float y)
         {
             string xy = "";
@@ -174,7 +204,10 @@ namespace ObtencionDatos
                 MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
             }
         }
+<<<<<<< HEAD
+=======
         public ArrayList listaAgujeros = new ArrayList();
+>>>>>>> 9060e2f9afc1ec9a5af57ea7e989c3b26a029134
         public ArrayList listaMechas = new ArrayList();
         // Metodo de lectura del archivo en cuestion
         public void Leer_Archivo(string path)
@@ -605,5 +638,14 @@ namespace ObtencionDatos
         {
             Ciclo_Agujereado();
         }
+<<<<<<< HEAD
+
+        private void visualizarPuntos_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
+=======
+>>>>>>> 9060e2f9afc1ec9a5af57ea7e989c3b26a029134
     }
 }

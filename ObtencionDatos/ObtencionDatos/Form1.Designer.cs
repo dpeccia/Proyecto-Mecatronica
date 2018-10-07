@@ -51,6 +51,7 @@
             this.btnEnviar = new System.Windows.Forms.Button();
             this.calibracionLista = new System.Windows.Forms.Button();
             this.btnComenzar = new System.Windows.Forms.Button();
+            this.visualizarPuntos = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.textBox1.Location = new System.Drawing.Point(12, 94);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(445, 149);
+            this.textBox1.Size = new System.Drawing.Size(445, 195);
             this.textBox1.TabIndex = 0;
             // 
             // menu
@@ -236,13 +237,27 @@
             this.btnComenzar.Text = "Comenzar";
             this.btnComenzar.UseVisualStyleBackColor = true;
             this.btnComenzar.Click += new System.EventHandler(this.btnComenzar_Click);
+<<<<<<< HEAD
+            // 
+            // visualizarPuntos
+            // 
+            this.visualizarPuntos.Location = new System.Drawing.Point(494, 249);
+            this.visualizarPuntos.Name = "visualizarPuntos";
+            this.visualizarPuntos.Size = new System.Drawing.Size(75, 40);
+            this.visualizarPuntos.TabIndex = 16;
+            this.visualizarPuntos.Text = "Visualizar puntos";
+            this.visualizarPuntos.UseVisualStyleBackColor = true;
+            this.visualizarPuntos.Click += new System.EventHandler(this.visualizarPuntos_Click);
+=======
+>>>>>>> 9060e2f9afc1ec9a5af57ea7e989c3b26a029134
             // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 255);
+            this.ClientSize = new System.Drawing.Size(590, 301);
+            this.Controls.Add(this.visualizarPuntos);
             this.Controls.Add(this.btnComenzar);
             this.Controls.Add(this.calibracionLista);
             this.Controls.Add(this.btnEnviar);
@@ -293,6 +308,7 @@
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.Button calibracionLista;
         private System.Windows.Forms.Button btnComenzar;
+        private System.Windows.Forms.Button visualizarPuntos;
 
         public System.EventHandler configuracionToolStripMenuItem_Click { get; set; }
         
