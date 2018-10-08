@@ -100,7 +100,6 @@ void conversionpasos(void)
 
     pasosx = pasosx * 2;
     pasosy = pasosy * 2;
-
 }
 
 void perforacion(void)
@@ -380,7 +379,6 @@ void serial_isr()
     }
     if ((flagx) == 1 && (ch != 'X'))
     {
-
         datox[i] = ch;
         i = i + 1;
         if (i == 7)
@@ -391,7 +389,6 @@ void serial_isr()
     }
     if ((flagy) == 1 && (ch != 'Y'))
     {
-
         datoy[j] = ch;
         j = j + 1;
         if (j == 7)

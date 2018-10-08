@@ -1,15 +1,11 @@
 #include <18F4550.h>
 #include <stdlib.h>
 #fuses HSPLL,NOWDT,NOPROTECT,NOLVP,NODEBUG,PLL5,CPUDIV1,VREGEN,MCLR,USBDIV,  // 48 MHz  para  el  USB y 48 MHz para  el resto del sistema
-//#fuses HS,NOWDT,NOLVP,CPUDIV1,MCLR
 #use delay(clock=48000000)
 #use rs232(baud=9600, xmit=pin_c6, rcv=pin_c7, bits=8, parity=N,stream=standard) 
-//#define LCD_DATA_PORT getenv("SFR:PORTB")
-//#include <lcd420.c>
-//#include <LCD420-FLEX.c>
-//#include <MATH.h>
 #use i2c(Master,sda=PIN_B4, scl=PIN_B5, force_sw,fast)
-#include <i2c_Flex_LCD.c>    
+#include <i2c_Flex_LCD.c>   
+//#include <LCD420-FLEX.c>
 
 #define sentidox PIN_D0
 #define sentidoy PIN_D1
@@ -30,10 +26,9 @@
 #define buzzer PIN_A3
 
 char ch;
-char mech[4];
+char mech[5];
 char datox[7];
 char datoy[7];
-//char mecha[4];
 int i, j, h, flagfin, salir;
 int contador, contador1;
 signed int32 x, y, xini, yini, pasosx, pasosy;
@@ -42,12 +37,13 @@ int flagx, flagy, flagxy, flagcomienzo, flagmecha, flagboton;
 short int flagpaquete, flagajuste;
 signed int32 pasosz, zini, z, alturamecha, guarda;
 
-void moverz(void) {
+void moverz(void) 
+{
     output_low(habilz);
     pasosz = z - zini;
-    //pasosz=pasosz-zini;
-    //alturamecha=z;
-    while (pasosz > 0) {
+    
+    while (pasosz > 0) 
+    {
         output_high(sentidoz); //para abajo
         output_high(motorz);
         delay_us(1200);
@@ -55,7 +51,8 @@ void moverz(void) {
         delay_us(1200);
         pasosz = pasosz - 1;
     }
-    while (pasosz < 0) {
+    while (pasosz < 0) 
+    {
         output_low(sentidoz); //para arriba
         output_high(motorz);
         delay_us(1200);
@@ -66,8 +63,10 @@ void moverz(void) {
     zini = z;
 }
 
-void bajarz(void) {
-    while (pasosz > 0) { //rutina que baja el cabezal
+void bajarz(void) 
+{
+    while (pasosz > 0) //rutina que baja el cabezal
+    { 
         output_low(habilz);
         pasosz = pasosz - 1;
         output_high(sentidoz);
@@ -76,8 +75,10 @@ void bajarz(void) {
     }
 }
 
-void subirz(void) {
-    while (pasosz > 0) { //rutina que sube el cabezal
+void subirz(void) 
+{
+    while (pasosz > 0) //rutina que sube el cabezal
+    { 
         output_low(sentidoz);
         pasosz = pasosz - 1;
         output_toggle(motorz);
@@ -85,7 +86,8 @@ void subirz(void) {
     }
 }
 
-void conversionpasos(void) {
+void conversionpasos(void) 
+{
     pasosxflot = (x - xini) / 200.0;
     pasosyflot = (y - yini) / 200.0;
     if (pasosxflot >= 0)
@@ -100,21 +102,23 @@ void conversionpasos(void) {
 
     pasosx = pasosx * 2;
     pasosy = pasosy * 2;
-
 }
 
-void perforacion(void) {
+void perforacion(void) 
+{
     output_high(dremel);
     while (flagpaquete == 0);
-    while (flagpaquete == 1) {
+    while (flagpaquete == 1) 
+    {
         while (flagxy == 0);
-        while (flagxy == 1) {
+        while (flagxy == 1) 
+        {
             x = (signed long long int) atof(datox);
             y = (signed long long int) atof(datoy);
             conversionpasos();
             xini = x;
             yini = y;
-            clear_interrupt(int_timer0);
+            clear_interrupt(INT_TIMER0);
             set_timer0(230);
             enable_interrupts(INT_TIMER0); //Habilita interrupción timer0
             flagx = 1;
@@ -130,8 +134,9 @@ void perforacion(void) {
     output_low(dremel);
 }
 
-void moverxy(void) {
-    clear_interrupt(int_timer0);
+void moverxy(void) 
+{
+    clear_interrupt(INT_TIMER0);
     set_timer0(230);
     enable_interrupts(INT_TIMER0); //Habilita interrupción timer0
     flagx = 1;
@@ -140,7 +145,8 @@ void moverxy(void) {
     while (flagxy == 1);
 }
 
-void posicionmecha(void) {
+void posicionmecha(void) 
+{
     x = +175000;
     y = +205000;
     conversionpasos();
@@ -153,9 +159,10 @@ void posicionmecha(void) {
     putc('M');
 }
 
-void profundidadmecha(void) {
-    printf(lcd_putc, "\f\1%s", "Ajustando Z");
-    printf(lcd_putc, "\2%s", "Profundidad de mecha");
+void profundidadmecha(void) 
+{
+    printf(LCD_PUTC, "\f\1%s", "Ajustando Z");
+    printf(LCD_PUTC, "\2%s", "Profundidad de mecha");
     output_low(habilz);
     output_low(habilx);
     output_low(habily);
@@ -172,30 +179,37 @@ void profundidadmecha(void) {
     zini = alturamecha;
 }
 
-void ajusteceroz(void) {
-    printf(lcd_putc, "\f\1%s", "Ajustando eje Z");
-    printf(lcd_putc, "\2%s", "Espere por favor");
+void ajusteceroz(void) 
+{
+    //printf(LCD_PUTC, "\f\1%s", "Ajustando eje Z");
+    //printf(LCD_PUTC, "\2%s", "Espere por favor");
     output_low(habilz);
+    printf(LCD_PUTC, "\f\1%s", "Buscando cero Z");
     while ((input(ceroz)) == 0) {
         output_low(sentidoz);
         output_toggle(motorz);
         delay_us(1200);
     }
+    printf(LCD_PUTC, "\f\1%s", "Buscando cero Z OK");
     zini = 0;
 }
 
-void ajusteceroxy(void) {
-    printf(lcd_putc, "\f\1%s", "Ajustando ejes X-Y");
-    printf(lcd_putc, "\2%s", "Espere por favor");
+void ajusteceroxy(void) 
+{
+    printf(LCD_PUTC, "\f\1%s", "Ajustando ejes X-Y");
+    printf(LCD_PUTC, "\2%s", "Espere por favor");
     //ajusteceroz();
     output_low(habilx);
     output_low(habily);
-    while ((input(cerox) == 0) || (input(ceroy)) == 0) {
-        if (input(cerox) == 0) {
+    while ((input(cerox) == 0) || (input(ceroy)) == 0) 
+    {
+        if (input(cerox) == 0) 
+        {
             output_high(sentidox);
             output_toggle(motorx);
         }
-        if (input(ceroy) == 0) {
+        if (input(ceroy) == 0) 
+        {
             output_low(sentidoy);
             output_toggle(motory);
         }
@@ -208,23 +222,26 @@ void ajusteceroxy(void) {
     yini = 0;
 }
 
-void mecha(void) {
+void mecha(void) 
+{
     while (flagmecha == 0);
     while (flagmecha == 1);
     broca = atof(mech);
 }
 
-void bip(void) {
+void bip(void) 
+{
     output_high(buzzer);
     contador1 = 5; // 1/48*4*65586*8*23=218453useg aprox
-    clear_interrupt(int_timer1); //limpio la bandera
+    clear_interrupt(INT_TIMER1); //limpio la bandera
     set_timer1(0);
     enable_interrupts(INT_TIMER1);
 }
 
 #INT_EXT2         //Atención a interrupción por cambio en RB2
 
-ext_isr1() { //Función de interrupción
+ext_isr1() //Función de interrupción
+{ 
     putc('F');
     flagajuste = 0;
     salir = 1;
@@ -233,9 +250,11 @@ ext_isr1() { //Función de interrupción
 
 #INT_EXT         //Atención a interrupción por cambio en RB0
 
-void INTEXT_isr(void) { //Función de interrupción
+void INTEXT_isr(void) //Función de interrupción
+{ 
     output_low(motorz);
-    if (input(canalb) == 0) {
+    if (input(canalb) == 0) 
+    {
         output_low(habilz);
         output_low(sentidoz); //mecha para arriba
         z = z - 1;
@@ -244,7 +263,8 @@ void INTEXT_isr(void) { //Función de interrupción
         output_low(motorz);
         delay_us(1200);
     }
-    if (input(canalb) == 1) {
+    if (input(canalb) == 1) 
+    {
         output_low(habilz);
         output_high(sentidoz); //mecha para abajo
         z = z + 1;
@@ -256,40 +276,49 @@ void INTEXT_isr(void) { //Función de interrupción
 }
 #int_TIMER0
 
-void TIMER0_isr(void) {
+void TIMER0_isr(void) 
+{
     contador = contador - 1;
 
-    if (contador == 0) {
+    if (contador == 0) 
+    {
         contador = 2;
-        if (pasosx == 0) {
+        if (pasosx == 0) 
+        {
             flagx = 0;
         }
-        if (pasosx > 0) {
+        if (pasosx > 0) 
+        {
             output_low(sentidox);
             output_toggle(motorx);
             pasosx = pasosx - 1;
         }
-        if (pasosx < 0) {
+        if (pasosx < 0) 
+        {
             output_high(sentidox);
             output_toggle(motorx);
             pasosx = pasosx + 1;
         }
 
-        if (pasosy == 0) {
+        if (pasosy == 0) 
+        {
             flagy = 0;
         }
-        if (pasosy > 0) {
+        if (pasosy > 0) 
+        {
             output_high(sentidoy);
             output_toggle(motory);
             pasosy = pasosy - 1;
         }
-        if (pasosy < 0) {
+        if (pasosy < 0) 
+        {
             output_low(sentidoy);
             output_toggle(motory);
             pasosy = pasosy + 1;
         }
 
-        if (flagx == 0 && flagy == 0) {
+        if (flagx == 0 && flagy == 0) 
+        {
             flagxy = 0;
             disable_interrupts(INT_TIMER0); //deshabilita interrupción timer0
         }
@@ -300,10 +329,12 @@ void TIMER0_isr(void) {
 
 #int_TIMER1
 
-void TIMER1_isr(void) {
+void TIMER1_isr(void) // Timer para buzzer
+{
     contador1 = contador1 - 1;
 
-    if (contador1 == 0) {
+    if (contador1 == 0) 
+    {
         output_low(buzzer);
         disable_interrupts(INT_TIMER1);
     }
@@ -311,69 +342,82 @@ void TIMER1_isr(void) {
 }
 #int_rda
 
-void serial_isr() {
+void serial_isr() 
+{
     ch = getchar();
-    if (ch == 'F' && flagpaquete == 1) {
+    if (ch == 'F' && flagpaquete == 1) //Ciclo terminado
+    {
         flagpaquete = flagpaquete + 1;
         flagfin = 1;
     }
-    if (ch == 'A') {
+    if (ch == 'A') //Inicio Ajuste
+    {
         flagajuste = flagajuste + 1;
     }
-    if (ch == 'P') {
+    if (ch == 'P') //Dato de perforacion entrante
+    {
         flagpaquete = flagpaquete + 1;
     }
-    if (ch == '*') {
+    if (ch == 'S') 
+    {
         flagcomienzo = 1;
     }
-    if (ch == 'M') {
+    if (ch == 'M') //Mecha entrante
+    {
         flagmecha = 1;
         h = 0;
     }
-    if ((flagmecha) == 1 && (ch != 'M')) {
-
+    if ((flagmecha) == 1 && (ch != 'M')) //Dato mecha
+    {
         mech[h] = ch;
         h = h + 1;
-        if (h == 4) {
+        if (h == 5) 
+        {
             flagmecha = 0;
         }
     }
-    if (ch == 'X') {
+    if (ch == 'X') //Valor X entrante
+    {
         flagx = 1;
         i = 0;
     }
-    if (ch == 'Y') {
+    if (ch == 'Y') //Valor Y entrante
+    {
         flagy = 1;
         j = 0;
     }
-    if ((flagx) == 1 && (ch != 'X')) {
-
+    if ((flagx) == 1 && (ch != 'X')) //Dato X
+    {
         datox[i] = ch;
         i = i + 1;
-        if (i == 7) {
+        if (i == 7) 
+        {
             flagx = 0;
+            putc('*');
         }
     }
-    if ((flagy) == 1 && (ch != 'Y')) {
-
+    if ((flagy) == 1 && (ch != 'Y')) //Dato Y
+    {
         datoy[j] = ch;
         j = j + 1;
         if (j == 7) {
             flagy = 0;
             flagxy = 1;
+            putc('*');
         }
     }
 }
 
-void main() {
+void main() 
+{
     delay_ms(1000);
-    enable_interrupts(int_rda);
+    enable_interrupts(INT_RDA);
     setup_timer_0(RTCC_8_BIT | RTCC_DIV_256); //Configuración timer0
     setup_timer_1(T1_INTERNAL | T1_DIV_BY_8); //Configuración timer1
 
-    enable_interrupts(int_ext2_L2H); //Habilita int. RB2?
+    enable_interrupts(INT_EXT2_L2H); //Habilita int. RB2?
     //ext_int_edge(L_TO_H);              //por flanco de subida
-    enable_interrupts(global); //Habilita interrupción general
+    enable_interrupts(GLOBAL); //Habilita interrupción general
     lcd_init();
 
     while (1) {
@@ -408,8 +452,8 @@ void main() {
         output_high(habilz);
         output_low(dremel); //apago el dremel
         output_low(buzzer); // apago buzzer
-        lcd_putc("\fPOR FAVOR PULSE * EN");
-        lcd_putc("\2EL TECLADO DE LA");
+        lcd_putc("\fHAGA CLICK EN");
+        lcd_putc("\2CALIBRAR EN LA");
         lcd_putc("\3COMPUTADORA Y ESPERE");
         lcd_putc("\4UN MOMENTO.");
         while (flagcomienzo == 0);
@@ -422,50 +466,55 @@ void main() {
         lcd_putc("\2Presione enter para");
         lcd_putc("\3comenzar el ajuste");
         lcd_putc("\4de la placa.");
-        while (input(enter) == 0) {
+        while (input(enter) == 0) 
+        {
         }
         delay_ms(10);
         bip();
-        while (input(enter) == 1) {
+        while (input(enter) == 1) 
+        {
         }
         alturamecha = 0;
         profundidadmecha();
         zini = alturamecha;
-        z = alturamecha - 500;
+        z = alturamecha - 500; 
         moverz();
         ajusteceroxy();
         putc('A');
         while (flagajuste == 0 && salir == 0);
 
-        while (flagajuste == 1) {
+        while (flagajuste == 1) 
+        {
             while (flagxy == 0);
-            while (flagxy == 1) {
+            while (flagxy == 1) 
+            {
                 x = (signed long long int) atof(datox);
                 y = (signed long long int) atof(datoy);
                 conversionpasos();
                 xini = x;
                 yini = y;
-                clear_interrupt(int_timer0);
+                clear_interrupt(INT_TIMER0);
                 set_timer0(230);
                 enable_interrupts(INT_TIMER0); //Habilita interrupción timer0
                 flagx = 1;
                 flagy = 1;
                 while (flagxy == 1);
-                //bajarz();
-                //moverz();
-                lcd_putc("\f\1Gire para subir o");
+                lcd_putc("\f\1Gire para subir o"); 
                 lcd_putc("\2bajar mecha.Presione");
                 lcd_putc("\3enter nuevo punto.");
                 lcd_putc("\4Boton rojo salir.");
-                clear_interrupt(int_ext_L2H);
-                enable_interrupts(int_ext_L2H);
-                while (input(enter) == 0 && salir == 0) {
+                clear_interrupt(INT_EXT_L2H);
+                enable_interrupts(INT_EXT_L2H);
+                while (input(enter) == 0 && salir == 0) 
+                {
                 }
                 delay_ms(10);
                 bip();
-                while (input(enter) == 1 && salir == 0) {
+                while (input(enter) == 1 && salir == 0) 
+                {
                 }
-                if (input(enter) == 0 && salir == 0) {
+                if (input(enter) == 0 && salir == 0) 
+                {
                     guarda = zini;
                     zini = z;
                     z = guarda;
@@ -475,7 +524,7 @@ void main() {
             }
         }
         bip();
-        disable_interrupts(int_ext_L2H);
+        disable_interrupts(INT_EXT_L2H);
         //salir=0;
         while (flagfin == 0) {
 
@@ -489,11 +538,13 @@ void main() {
                 lcd_putc("\3presione enter");
 
 
-                while (input(enter) == 0) {
+                while (input(enter) == 0) 
+                {
                 }
                 delay_ms(10);
                 bip();
-                while (input(enter) == 1) {
+                while (input(enter) == 1) 
+                {
                 }
                 alturamecha = 0;
                 profundidadmecha();
@@ -506,11 +557,10 @@ void main() {
             ajusteceroxy();
             contador = 2;
             lcd_putc("\f\1Perforadora Lista");
-            lcd_putc("\2para operar pulse *");
-            lcd_putc("\3para comenzar");
-
-            puts("OK");
+            lcd_putc("\2para operar haga click");
+            lcd_putc("\3en \"Comenzar\"");
             while (flagcomienzo == 0);
+            
             lcd_putc("\f\1PERFORANDO");
             flagcomienzo = 0;
             perforacion();
@@ -518,8 +568,3 @@ void main() {
         }
     }
 }
-
-
-
-
-

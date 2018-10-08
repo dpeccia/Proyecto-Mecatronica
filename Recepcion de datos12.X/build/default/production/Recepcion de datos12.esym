@@ -1,7 +1,7 @@
 D G "__PCH__" 0 0 ""5.015""
 D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""01-oct-18""
-D G "__TIME__" 0 0 ""14:34:12""
+D G "__DATE__" 0 0 ""08-oct.-18""
+D G "__TIME__" 0 0 ""00:05:34""
 D G "__18F4550" 0 0 "1" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
@@ -1357,103 +1357,114 @@ F G "LCD_PUTC" 6 170 "void(int8 in_data)" `938
 V L "data" 6 171 "int8" `940 
 C L "LCD_PUTC" 6 3 1 "FUNCTION"
 C L "LCD_PUTC" 6 3 1 "FUNCTION"
-D G "sentidox" 0 14 "PIN_D0"
-D G "sentidoy" 0 15 "PIN_D1"
-D G "sentidoz" 0 16 "PIN_D2"
-D G "motorx" 0 17 "PIN_D3"
-D G "motory" 0 18 "PIN_D4"
-D G "motorz" 0 19 "PIN_D5"
-D G "cerox" 0 20 "PIN_D6"
-D G "ceroy" 0 21 "PIN_D7"
-D G "ceroz" 0 22 "PIN_C0"
-D G "profunz" 0 23 "PIN_C1"
-D G "dremel" 0 24 "PIN_E0"
-D G "enter" 0 25 "PIN_E1"
-D G "habilx" 0 26 "PIN_E2"
-D G "habily" 0 27 "PIN_A0"
-D G "habilz" 0 28 "PIN_A1"
-D G "canalb" 0 29 "PIN_A2"
-D G "buzzer" 0 30 "PIN_A3"
-V G "ch" 0 32 "int8" `941 
-V G "mech" 0 33 "int8[4]" `942 
-V G "datox" 0 34 "int8[7]" `943 
-V G "datoy" 0 35 "int8[7]" `944  "char mecha[4];"
-V G "i" 0 37 "int8" `945 
-V G "j" 0 37 "int8" `946 
-V G "h" 0 37 "int8" `947 
-V G "flagfin" 0 37 "int8" `948 
-V G "salir" 0 37 "int8" `949 
-V G "contador" 0 38 "int8" `950 
-V G "contador1" 0 38 "int8" `951 
-V G "x" 0 39 "sint32" `952 
-V G "y" 0 39 "sint32" `953 
-V G "xini" 0 39 "sint32" `954 
-V G "yini" 0 39 "sint32" `955 
-V G "pasosx" 0 39 "sint32" `956 
-V G "pasosy" 0 39 "sint32" `957 
-V G "broca" 0 40 "float" `958 
-V G "pasosxflot" 0 40 "float" `959 
-V G "pasosyflot" 0 40 "float" `960 
-V G "flagx" 0 41 "int8" `961 
-V G "flagy" 0 41 "int8" `962 
-V G "flagxy" 0 41 "int8" `963 
-V G "flagcomienzo" 0 41 "int8" `964 
-V G "flagmecha" 0 41 "int8" `965 
-V G "flagboton" 0 41 "int8" `966 
-V G "flagpaquete" 0 42 "int1" `967 
-V G "flagajuste" 0 42 "int1" `968 
-V G "pasosz" 0 43 "sint32" `969 
-V G "zini" 0 43 "sint32" `970 
-V G "z" 0 43 "sint32" `971 
-V G "alturamecha" 0 43 "sint32" `972 
-V G "guarda" 0 43 "sint32" `973 
-F G "moverz" 0 45 "void()" `974 
-C L "moverz" 0 48 2 "FUNCTION"
-C L "moverz" 0 48 1 "FUNCTION"
-C L "moverz" 0 48 1 "FUNCTION"
-F G "bajarz" 0 70 "void()" `975 
-C L "bajarz" 0 48 1 "FUNCTION"
+D G "sentidox" 0 10 "PIN_D0"
+D G "sentidoy" 0 11 "PIN_D1"
+D G "sentidoz" 0 12 "PIN_D2"
+D G "motorx" 0 13 "PIN_D3"
+D G "motory" 0 14 "PIN_D4"
+D G "motorz" 0 15 "PIN_D5"
+D G "cerox" 0 16 "PIN_D6"
+D G "ceroy" 0 17 "PIN_D7"
+D G "ceroz" 0 18 "PIN_C0"
+D G "profunz" 0 19 "PIN_C1"
+D G "dremel" 0 20 "PIN_E0"
+D G "enter" 0 21 "PIN_E1"
+D G "habilx" 0 22 "PIN_E2"
+D G "habily" 0 23 "PIN_A0"
+D G "habilz" 0 24 "PIN_A1"
+D G "canalb" 0 25 "PIN_A2"
+D G "buzzer" 0 26 "PIN_A3"
+V G "ch" 0 28 "int8" `941 
+V G "mech" 0 29 "int8[5]" `942 
+V G "datox" 0 30 "int8[7]" `943 
+V G "datoy" 0 31 "int8[7]" `944 
+V G "i" 0 32 "int8" `945 
+V G "j" 0 32 "int8" `946 
+V G "h" 0 32 "int8" `947 
+V G "flagfin" 0 32 "int8" `948 
+V G "salir" 0 32 "int8" `949 
+V G "contador" 0 33 "int8" `950 
+V G "contador1" 0 33 "int8" `951 
+V G "x" 0 34 "sint32" `952 
+V G "y" 0 34 "sint32" `953 
+V G "xini" 0 34 "sint32" `954 
+V G "yini" 0 34 "sint32" `955 
+V G "pasosx" 0 34 "sint32" `956 
+V G "pasosy" 0 34 "sint32" `957 
+V G "broca" 0 35 "float" `958 
+V G "pasosxflot" 0 35 "float" `959 
+V G "pasosyflot" 0 35 "float" `960 
+V G "flagx" 0 36 "int8" `961 
+V G "flagy" 0 36 "int8" `962 
+V G "flagxy" 0 36 "int8" `963 
+V G "flagcomienzo" 0 36 "int8" `964 
+V G "flagmecha" 0 36 "int8" `965 
+V G "flagboton" 0 36 "int8" `966 
+V G "flagpaquete" 0 37 "int1" `967 
+V G "flagajuste" 0 37 "int1" `968 
+V G "pasosz" 0 38 "sint32" `969 
+V G "zini" 0 38 "sint32" `970 
+V G "z" 0 38 "sint32" `971 
+V G "alturamecha" 0 38 "sint32" `972 
+V G "guarda" 0 38 "sint32" `973 
+F G "moverz" 0 41 "void()" `974 
+C L "moverz" 0 8 1 "FUNCTION"
+C L "moverz" 0 8 1 "FUNCTION"
+F G "bajarz" 0 67 "void()" `975 
+C L "bajarz" 0 8 1 "FUNCTION"
 F G "subirz" 0 79 "void()" `976 
-C L "subirz" 0 48 1 "FUNCTION"
-F G "conversionpasos" 0 87 "void()" `977 
-F G "perforacion" 0 104 "void()" `985 
-C L "perforacion" 0 48 1 "FUNCTION"
-C L "perforacion" 0 48 1 "FUNCTION"
-C L "perforacion" 0 48 1 "FUNCTION"
-F G "moverxy" 0 132 "void()" `988 
-C L "moverxy" 0 48 1 "FUNCTION"
-F G "posicionmecha" 0 142 "void()" `989 
-C L "posicionmecha" 0 48 2 "FUNCTION"
-F G "profundidadmecha" 0 154 "void()" `990 
-C L "profundidadmecha" 0 48 1 "FUNCTION"
-F G "ajusteceroz" 0 172 "void()" `996 
-F G "ajusteceroxy" 0 183 "void()" `1001 
-C L "ajusteceroxy" 0 48 1 "FUNCTION"
-F G "mecha" 0 206 "void()" `1006 
-F G "bip" 0 212 "void()" `1007 
-C L "bip" 0 48 1 "FUNCTION"
-C L "bip" 0 48 1 "FUNCTION"
-F G "ext_isr1" 0 221 "int8()" `1008  "Función de interrupción"
-C L "ext_isr1" 0 48 1 "FUNCTION"
-F G "INTEXT_isr" 0 229 "void()" `1009  "Función de interrupción"
-C L "INTEXT_isr" 0 48 1 "FUNCTION"
-C L "INTEXT_isr" 0 48 1 "FUNCTION"
-F G "TIMER0_isr" 0 251 "void()" `1010 
-C L "TIMER0_isr" 0 48 1 "FUNCTION"
-C L "TIMER0_isr" 0 48 1 "FUNCTION"
-F G "TIMER1_isr" 0 295 "void()" `1011 
-F G "serial_isr" 0 306 "void()" `1012 
-F G "MAIN" 0 363 "void()" `1013 
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 2 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
-C L "MAIN" 0 48 2 "FUNCTION"
-C L "MAIN" 0 48 1 "FUNCTION"
+C L "subirz" 0 8 1 "FUNCTION"
+F G "conversionpasos" 0 90 "void()" `977 
+F G "perforacion" 0 108 "void()" `985 
+C L "perforacion" 0 8 1 "FUNCTION"
+C L "perforacion" 0 8 1 "FUNCTION"
+C L "perforacion" 0 8 1 "FUNCTION"
+F G "moverxy" 0 138 "void()" `988 
+C L "moverxy" 0 8 1 "FUNCTION"
+F G "posicionmecha" 0 149 "void()" `989 
+C L "posicionmecha" 0 8 2 "FUNCTION"
+F G "profundidadmecha" 0 163 "void()" `990 
+C L "profundidadmecha" 0 8 1 "FUNCTION"
+F G "ajusteceroz" 0 183 "void()" `996  "printf(LCD_PUTC, "\f\1%s", "Ajustando eje Z");"
+C L "ajusteceroz" 0 8 1 "FUNCTION"
+F G "ajusteceroxy" 0 198 "void()" `1001 
+C L "ajusteceroxy" 0 8 1 "FUNCTION"
+F G "mecha" 0 226 "void()" `1006 
+F G "bip" 0 233 "void()" `1007 
+C L "bip" 0 8 1 "FUNCTION"
+C L "bip" 0 8 1 "FUNCTION"
+C L "ext_isr1" 0 8 1 "FUNCTION"
+F G "ext_isr1" 0 244 "int8()" `1008 
+C L "ext_isr1" 0 8 1 "FUNCTION"
+C L "INTEXT_isr" 0 8 1 "FUNCTION"
+F G "INTEXT_isr" 0 254 "void()" `1009 
+C L "INTEXT_isr" 0 8 1 "FUNCTION"
+C L "INTEXT_isr" 0 8 1 "FUNCTION"
+F G "TIMER0_isr" 0 280 "void()" `1010 
+C L "TIMER0_isr" 0 8 1 "FUNCTION"
+C L "TIMER0_isr" 0 8 1 "FUNCTION"
+C L "TIMER1_isr" 0 8 1 "FUNCTION"
+F G "TIMER1_isr" 0 333 "void()" `1011 
+F G "serial_isr" 0 346 "void()" `1012 
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+C L "serial_isr" 0 8 1 "FUNCTION"
+F G "MAIN" 0 412 "void()" `1013 
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 2 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
+C L "MAIN" 0 8 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

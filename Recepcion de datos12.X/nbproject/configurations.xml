@@ -38,7 +38,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>CCSC</languageToolchain>
-        <languageToolchainVersion>4.130</languageToolchainVersion>
+        <languageToolchainVersion>5.015</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>

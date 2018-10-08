@@ -20,7 +20,7 @@ namespace ObtencionDatos
         {
             public float x, y;
             public String xy = "X+000000Y+000000";           
-            public float mecha;            
+            public Mecha mecha;            
         }
 
         // Creamos una clase mecha, que en principio usamos como estructura
@@ -53,28 +53,63 @@ namespace ObtencionDatos
         Agujero punto1real = new Agujero();
         Agujero punto2real = new Agujero();
 
-        
-        public void convertir_string_a_xy(Agujero agujero){}
+        public ArrayList listaMechas = new ArrayList();
+
+        //public void Convertir_string_a_xy(Agujero agujero){}
 
         public Form1()
         {
             InitializeComponent();
             extremo.x = 500;
             extremo.y = 500;
-            mmCorreccion.Text = "00.0";
+            MmCorreccion.Text = "00.0";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-        public void PuntosExtremos()
+        public string Convertir_xy_int_a_string(float x, float y)
+        {
+            string xy = "";
+            int x_nuevo, y_nuevo;
+            x_nuevo = (int)x * 10;
+            y_nuevo = (int)y * 10;
+
+            xy += "X";
+            if (x_nuevo >= 0)
+            {
+                xy += "+";
+            }
+            else
+            {
+                xy += "-";
+                x_nuevo *= -1;
+            }
+            xy += x_nuevo.ToString().PadLeft(6, '0');
+
+            xy += "Y";
+            if (y_nuevo >= 0)
+            {
+                xy += "+";
+            }
+            else
+            {
+                xy += "-";
+                y_nuevo *= -1;
+            }
+            xy += y_nuevo.ToString().PadLeft(6, '0');
+
+            return xy;
+        }
+
+        public void PuntosExtremos()//OK
         {
             Mecha mechaAux1 = (Mecha)listaMechas[0];
             Mecha mechaAux2 = (Mecha)listaMechas[1];
             foreach (Agujero i in listaAgujeros)
             {
-                if (i.mecha == mechaAux1.diametro)
+                if (i.mecha.nombre == mechaAux1.nombre)
                 {
                     if (punto1.x > i.x)
                     {
@@ -85,7 +120,7 @@ namespace ObtencionDatos
                         punto1 = i;
                     }
                 }
-                if (i.mecha == mechaAux1.diametro || i.mecha == mechaAux2.diametro)
+                if (i.mecha.nombre == mechaAux1.nombre || i.mecha.nombre == mechaAux2.nombre)
                 {
                     if (punto2.y >= i.y)
                     {
@@ -97,103 +132,15 @@ namespace ObtencionDatos
                     }
                 }
             }
+            
+            TextBox1.Text += "Puntos para calibración elegidos" + Environment.NewLine;
         }
-        public string convertir_xy_int_a_string(float x, float y)
-        {
-            string xy = "";
-            int x_nuevo, y_nuevo;
-            x_nuevo = (int) x * 10;
-            y_nuevo = (int) y * 10;
-            xy += "X";
-            if (x_nuevo >= 0)
-            {
-                xy += "+";
-            }
-            else
-            {
-                xy += "-";
-                x_nuevo *= -1;
-            }
-            /// MODIFICACION
-            xy = x_nuevo.ToString().PadLeft(6, '0');
-            /*
-            if (x_nuevo > 9999999)
-                xy += x_nuevo.ToString();
-            else
-            {
-                if (x_nuevo > 999999)
-                {
-                    xy += "0"+x_nuevo.ToString();
-                }
-                else
-                {
-                    if (x_nuevo > 99999)
-                    {
-                        xy += "00" + x_nuevo.ToString();
-                    }
-                    else
-                    {
-                        if (x_nuevo > 9999)
-                        {
-                            xy += "000" + x_nuevo.ToString();
-                        }
-                        else
-                        {
-                            xy += "0000" + x_nuevo.ToString();
-                        }
-                    }
-                }
-            }*/
-            xy += "Y";
-            if (y_nuevo >= 0)
-            {
-                xy += "+";
-            }
-            else
-            {
-                xy += "-";
-                y_nuevo *= -1;
-            }
-            /// MODIFICACION
-            xy += y_nuevo.ToString().PadLeft(6, '0');
-            /*
-            if (y_nuevo > 9999999)
-                xy += y_nuevo.ToString();
-            else
-            {
-                if (y_nuevo > 999999)
-                {
-                    xy += "0" + y_nuevo.ToString();
-                }
-                else
-                {
-                    if (y_nuevo > 99999)
-                    {
-                        xy += "00" + y_nuevo.ToString();
-                    }
-                    else
-                    {
-                        if (y_nuevo > 9999)
-                        {
-                            xy += "000" + y_nuevo.ToString();
-                        }
-                        else
-                        {
-                            xy += "0000" + y_nuevo.ToString();
-                        }
-                    }
-                }
-            }*/
-            return xy;
-        }
-        // Enviar todos los agujeros
-        
 
         // Abrir archivo para leer
-        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)//OK
         {
-            openFileDialog1.ShowDialog();
-            pathArchivo = openFileDialog1.FileName;
+            OpenFileDialog1.ShowDialog();
+            pathArchivo = OpenFileDialog1.FileName;
             if (pathArchivo != "openFileDialog1")
             {
                 label1.Text = pathArchivo;
@@ -204,13 +151,9 @@ namespace ObtencionDatos
                 MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
             }
         }
-<<<<<<< HEAD
-=======
-        public ArrayList listaAgujeros = new ArrayList();
->>>>>>> 9060e2f9afc1ec9a5af57ea7e989c3b26a029134
-        public ArrayList listaMechas = new ArrayList();
+        
         // Metodo de lectura del archivo en cuestion
-        public void Leer_Archivo(string path)
+        public void Leer_Archivo(string path)//OK
         {
             string textoArchivo = null;
             string[] lineasArchivo = null;
@@ -219,7 +162,7 @@ namespace ObtencionDatos
             int separador = 0;
             bool igualPorciento = false;
            
-            textBox1.Text += pathArchivo + Environment.NewLine;         // Muestra el path en el TextBox
+            TextBox1.Text += pathArchivo + Environment.NewLine;         // Muestra el path en el TextBox
 
             try
             {
@@ -238,7 +181,7 @@ namespace ObtencionDatos
                 return;
             }
             
-            textBox1.Text += Environment.NewLine;
+            TextBox1.Text += Environment.NewLine;
 
             for (int i = 0; i < lineasArchivo.Length; i++)       // Cuenta cantidad de mechas
             {
@@ -249,25 +192,27 @@ namespace ObtencionDatos
                 }
                 if (igualPorciento && lineasArchivo[i].Contains("T"))
                 {
-                    textBox1.Text += lineasArchivo[i];
+                    TextBox1.Text += lineasArchivo[i];
                     cantMechas++;
                 }
             }
 
-            textBox1.Text += Environment.NewLine + "Mechas:" + cantMechas + Environment.NewLine;
+            TextBox1.Text += Environment.NewLine + "Mechas:" + cantMechas + Environment.NewLine;
 
             for (int i = 0; i < cantMechas; i++)        // Escribo la lista de mechas 
             {
                 if (lineasArchivo[i + 2].Contains("T"))
                 {
-                    Mecha mecha = new Mecha();
-                    mecha.nombre = lineasArchivo[i + 2].Substring(0, 3);
-                    mecha.diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6)) / 10000;     // Dividimos por 1000 porque se come el .0
+                    Mecha mecha = new Mecha
+                    {
+                        nombre = lineasArchivo[i + 2].Substring(0, 3),
+                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6)) / 10000     // Dividimos por 1000 porque se come el .0
+                    };
                     listaMechas.Add(mecha);
                 }
             }
 
-            textBox1.Text += "Lista Ready";
+            
             String mechaActual;
             Mecha auxMecha = new Mecha();
             float diametroMechaActual = 0;
@@ -287,31 +232,39 @@ namespace ObtencionDatos
                 }
                 if (lineasArchivo[i].Substring(0, 1) == "X")            // Busca agujeros a realizar por esa mecha
                 {
-                    Agujero agujero = new Agujero();
-                    agujero.x = Int32.Parse(lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1));
-                    agujero.y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1)));
-                    agujero.mecha = diametroMechaActual;
+                    Agujero agujero = new Agujero
+                    {
+                        x = Int32.Parse(lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1)),
+                        y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1))),
+                        mecha = (Mecha) auxMecha
+                    };
+                    agujero.xy = Convertir_xy_int_a_string(agujero.x, agujero.y);
                     listaAgujeros.Add(agujero);
                 }
             }
+            TextBox1.Text += "Listas Terminadas" + Environment.NewLine;
+            PuntosExtremos();
+            TextBox1.Text += "Puntos para calibración guardados" + Environment.NewLine;
         }
 
         // Metodo para resetear agujeros a 0
-        public void resetAgujero(Agujero agujero)
+        public void ResetAgujero(Agujero agujero)//OK
         {
             agujeroAux.x = 0;
             agujeroAux.y = 0;
             agujeroAux.xy = "X+000000Y+000000";
         }
-        public void enableButtons(bool estado){
-            correccionXmas.Enabled = estado;
-            correccionYmas.Enabled = estado;
-            correccionXmenos.Enabled = estado;
-            correccionYmenos.Enabled = estado;
+
+        public void EnableButtons(bool estado)//OK
+        {
+            CorreccionXmas.Enabled = estado;
+            CorreccionYmas.Enabled = estado;
+            CorreccionXmenos.Enabled = estado;
+            CorreccionYmenos.Enabled = estado;
         }
 
         // Metodo para secuencia completa de calibracion
-        public Offset Calibracion()
+        public void Calibracion()
         {
             Offset correccion = new Offset();   
             Offset correccionPunto1 = new Offset();
@@ -322,9 +275,9 @@ namespace ObtencionDatos
             Mecha mechaEnviar;
             string mecha;
             //enableButtons(true);
-            mmCorreccion.Enabled = true;
+            MmCorreccion.Enabled = true;
 
-            calibrar.Enabled = false;
+            Calibrar.Enabled = false;
 
             // Calibración eje z
             //EnviarAgujero(extremo); // Envia agujero de extremo para prueba de profundidad
@@ -332,6 +285,8 @@ namespace ObtencionDatos
             {
                 Recibir();
             }
+            TextBox1.Text += "Secuencia lista" + Environment.NewLine;
+
             mechaEnviar = (Mecha)listaMechas[0];    
             mecha = "M";
             mecha += Convert.ToString(mechaEnviar.diametro);
@@ -341,7 +296,7 @@ namespace ObtencionDatos
             }
             Enviar(mecha);  //Envia mecha para altura z
 
-            enableButtons(true);
+            EnableButtons(true);
 
             Enviar("A");    //Inicio ciclo ajuste
             // Calibación plano xy
@@ -351,11 +306,12 @@ namespace ObtencionDatos
             {
                 Recibir();
             }
+            TextBox1.Text += "Punto 1 Recibido"+Environment.NewLine;
             Enviar("A");    //Fin ciclo ajuste
-            calibracionLista.Enabled  = true;
+            CalibracionLista.Enabled  = true;
             /*
             while (!ready) // Si se hace click en siguiente, continúa
-            {F
+            {
                 Recibir();
             }*/
             /*
@@ -382,33 +338,33 @@ namespace ObtencionDatos
             mmCorreccion.Enabled = false;
             calibrar.Enabled = true;
             */
-            return correccion;
+            return;
         }
         
         // Envio de datos
-        public void Enviar(string caracteres)
+        public void Enviar(string caracteres)//OK
         {
-            if (puertoSerie.IsOpen)
+            if (PuertoSerie.IsOpen)
             {
-                puertoSerie.Write(caracteres);
+                PuertoSerie.Write(caracteres);
             }
         }
 
         // Actualizacion del textbox de recepcion
-        public void actualizarTexto(object sender, EventArgs e)
+        public void ActualizarTexto(object sender, EventArgs e)//OK
         {
-            txtRecibir.Text += readBuffer;
+            TxtRecibir.Text += readBuffer;
         }
 
         // Recepcion de datos
-        public void puertoSerie_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public void PuertoSerie_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)//OK
         {
-            if(puertoSerie.IsOpen)
+            if(PuertoSerie.IsOpen)
             {
                 try
                 {
-                    readBuffer = puertoSerie.ReadExisting();
-                    this.Invoke(new EventHandler(actualizarTexto));
+                    readBuffer = PuertoSerie.ReadExisting();
+                    this.Invoke(new EventHandler(ActualizarTexto));
                 }
                 catch(Exception ex)
                 {
@@ -417,13 +373,13 @@ namespace ObtencionDatos
         }
 
         // Guarda caracteres en readBuffer
-        public string Recibir()
+        public string Recibir()//OK
         {
-            if(puertoSerie.IsOpen)
+            if(PuertoSerie.IsOpen)
             {
                 try
                 {
-                    readBuffer = puertoSerie.ReadExisting();
+                    readBuffer = PuertoSerie.ReadExisting();
                     //this.Invoke(new EventHandler());
                 }
                 catch(Exception e)
@@ -459,14 +415,14 @@ namespace ObtencionDatos
 
         }
         
-        private void puertoSerieToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PuertoSerieToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
         }
         // Envia posicion de agujero
         public void EnviarAgujero(Agujero agujero)
         {
-            Enviar(convertir_xy_int_a_string(agujero.x, agujero.y));    // Envia posicion de cambio de mecha para bajar y hacer prueba de altura 
+            Enviar(Convertir_xy_int_a_string(agujero.x, agujero.y));    // Envia posicion de cambio de mecha para bajar y hacer prueba de altura 
             /*while (readBuffer != "*")      // Espera hasta recibir confirmacion de la posicion
             {
                 Recibir();
@@ -474,22 +430,21 @@ namespace ObtencionDatos
             //resetReadBuffer();
         }
 
-        private void calibrar_Click(object sender, EventArgs e)
+        private void Calibrar_Click(object sender, EventArgs e)//OK
         {
             Enviar("*");
-
             Calibracion();
         }
 
-        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ToolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)//OK
         {
-            cboPuertoSerie.Items.Clear();
+            CboPuertoSerie.Items.Clear();
 
-            if (!puertoSerie.IsOpen)
+            if (!PuertoSerie.IsOpen)
             {
                 try
                 {
-                    cboPuertoSerie.Items.AddRange(SerialPort.GetPortNames());
+                    CboPuertoSerie.Items.AddRange(SerialPort.GetPortNames());
                 }
                 catch { }
             }
@@ -499,60 +454,59 @@ namespace ObtencionDatos
             }
         }
 
-        
-        private void btnAbrirCerrar_Click_1(object sender, EventArgs e)
+        private void BtnAbrirCerrar_Click_1(object sender, EventArgs e)//OK
         {
-            if (puertoSerie.IsOpen)
+            if (PuertoSerie.IsOpen)
             {
-                puertoSerie.DiscardInBuffer();
-                puertoSerie.Close();
-                btnAbrirCerrar.Text = "Abrir Puerto";
-                calibrar.Enabled = false;
+                PuertoSerie.DiscardInBuffer();
+                PuertoSerie.Close();
+                BtnAbrirCerrar.Text = "Abrir Puerto";
+                Calibrar.Enabled = false;
             }
             else
             {
                 try
                 {
-                    puertoSerie.PortName = cboPuertoSerie.SelectedItem.ToString();
-                    puertoSerie.Open();
+                    PuertoSerie.PortName = CboPuertoSerie.SelectedItem.ToString();
+                    PuertoSerie.Open();
+                    Calibrar.Enabled = true;
+                    BtnAbrirCerrar.Text = "Cerrar Puerto";
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    MessageBox.Show("El puerto " + cboPuertoSerie.SelectedItem + " está ocupado");
+                    MessageBox.Show("El puerto " + CboPuertoSerie.SelectedItem + " está ocupado");
                 }
                 catch (Exception ex)
                 {
 
-                }
-
-                calibrar.Enabled = true;
-                btnAbrirCerrar.Text = "Cerrar Puerto";
+                }                
             }
         }
         
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-        private void mmCorreccion_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void OpenFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
         }
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private void MmCorreccion_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            Enviar(txtEscribir.Text);
-            txtEscribir.Text = "";
+
         }
 
-        private void puertoSerie_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
+        private void BtnEnviar_Click(object sender, EventArgs e)//OK
         {
-            if (puertoSerie.IsOpen)
+            Enviar(TxtEscribir.Text);
+            TxtEscribir.Text = "";
+        }
+
+        private void PuertoSerie_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (PuertoSerie.IsOpen)
             {
                 try
                 {
-                    readBuffer = puertoSerie.ReadExisting();
-                    this.Invoke(new EventHandler(actualizarTexto));
+                    readBuffer = PuertoSerie.ReadExisting();
+                    this.Invoke(new EventHandler(ActualizarTexto));
                 }
                 catch (Exception ex)
                 {
@@ -560,7 +514,7 @@ namespace ObtencionDatos
             }
         }
 
-        private void calibracionLista_Click(object sender, EventArgs e)
+        private void CalibracionLista_Click(object sender, EventArgs e)
         {
             switch (state)
             {
@@ -571,7 +525,7 @@ namespace ObtencionDatos
                     punto2.x += offsetReal.x;
                     punto2.y += offsetReal.y;
                     
-                    calibracionLista.Text = "Finalizar";
+                    CalibracionLista.Text = "Finalizar";
                     
                     Enviar(punto2.xy); //Envia segundo punto de referencia
                     agujeroAux = punto2; // Guarda punto en variable auxiliar
@@ -580,6 +534,7 @@ namespace ObtencionDatos
                     {
                         Recibir();
                     }
+                    TextBox1.Text += "Agujero recibido"+Environment.NewLine;
                     state = 1;
 
                     break;
@@ -587,11 +542,11 @@ namespace ObtencionDatos
                     CalculosOffset(punto1, punto2, punto2real);
                     punto2 = agujeroAux; // Guarda variable auxiliar con corrección en punto de referencia
                     
-                    enableButtons(false);
-                    mmCorreccion.Enabled = false;
-                    calibrar.Enabled = true;
+                    EnableButtons(false);
+                    MmCorreccion.Enabled = false;
+                    Calibrar.Enabled = true;
                     state = 0;
-                    calibracionLista.Enabled = false;
+                    CalibracionLista.Enabled = false;
 
                     break;
             }
@@ -599,53 +554,65 @@ namespace ObtencionDatos
 
         private void Ciclo_Agujereado()
         {
-            Enviar("*");
+            int i = 1;
+            Mecha mechaAnterior = (Mecha) listaMechas[0];
+            Mecha mechaActual = (Mecha) listaMechas[0];
+            Enviar("S");
             foreach (Agujero agujero in listaAgujeros)
             {
-                EnviarAgujero(agujero);
-                while (readBuffer != "F")
+                mechaActual.nombre = agujero.mecha.nombre;
+                if(mechaActual.nombre == mechaAnterior.nombre)
+                { 
+                    Enviar("P");
+                    EnviarAgujero(agujero);
+                    while (readBuffer != "*")
+                    {
+                        Recibir();                        
+                    }
+                    TextBox1.Text += "AgujeroListo" + i + Environment.NewLine;
+                    if (i == listaAgujeros.Capacity)
+                    {
+                        Enviar("F");
+                    }
+                }
+                else
                 {
-                    Recibir();
+                    Enviar(mechaActual.diametro.ToString());
                 }
             }
         }
 
-        private void correccionYmas_Click(object sender, EventArgs e)
+        private void CorreccionYmas_Click(object sender, EventArgs e)//OK Sujeto a cambios
         {
-            agujeroAux.y += float.Parse(mmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
+            agujeroAux.y += float.Parse(MmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
             EnviarAgujero(agujeroAux);
         }
-
-        private void correccionXmas_Click(object sender, EventArgs e)
+        private void CorreccionXmas_Click(object sender, EventArgs e)//OK Sujeto a cambios
         {
-            agujeroAux.x += float.Parse(mmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
+            agujeroAux.x += float.Parse(MmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
             EnviarAgujero(agujeroAux);
         }
-
-        private void correccionXmenos_Click(object sender, EventArgs e)
+        private void CorreccionXmenos_Click(object sender, EventArgs e)//OK Sujeto a cambios
         {
-            agujeroAux.y -= float.Parse(mmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
+            agujeroAux.y -= float.Parse(MmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
             EnviarAgujero(agujeroAux);
         }
-
-        private void correccionYmenos_Click(object sender, EventArgs e)
+        private void CorreccionYmenos_Click(object sender, EventArgs e)//OK Sujeto a cambios
         {
-            agujeroAux.x -= float.Parse(mmCorreccion.Text, System.Globalization.CultureInfo.CurrentCulture);
+            agujeroAux.x -= float.Parse(MmCorreccion.Text, System.Globalization.CultureInfo.CurrentCulture);
             EnviarAgujero(agujeroAux);
         }
-
-        private void btnComenzar_Click(object sender, EventArgs e)
+        private void BtnComenzar_Click(object sender, EventArgs e)//OK
         {
             Ciclo_Agujereado();
         }
-<<<<<<< HEAD
-
-        private void visualizarPuntos_Click(object sender, EventArgs e)
+        private void VisualizarPuntos_Click(object sender, EventArgs e)//Revisar
         {
             Form2 form2 = new Form2();
             form2.Show();
         }
-=======
->>>>>>> 9060e2f9afc1ec9a5af57ea7e989c3b26a029134
     }
 }
+//TODO: Envio de puntos para calibracion
+//TODO: Envio de puntos para agujereado
+//TODO: Calibracion

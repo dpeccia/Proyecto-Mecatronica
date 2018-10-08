@@ -86,7 +86,7 @@ namespace ObtencionDatos
 
 
             ObtencionDatos.Form1.Agujero agujerote = (ObtencionDatos.Form1.Agujero) ObtencionDatos.Form1.listaAgujeros[0];
-            float diametro = agujerote.mecha;
+            float diametro = agujerote.mecha.diametro;
             diametro = diametro * 300;
 
             g.Clear(Color.White);
@@ -101,7 +101,7 @@ namespace ObtencionDatos
                 Console.WriteLine("{0}", (agujero.x + menorX) / factorX);
                 Console.WriteLine("{0}", (agujero.y + menorY) / factorY);
 
-                g.DrawEllipse(pen, ((agujero.x + menorX) / factorX) * 2, ((agujero.y + menorY) / factorY) * 2, (agujero.mecha) * 300, (agujero.mecha) * 300);
+                g.DrawEllipse(pen, ((agujero.x + menorX) / factorX) * 2, ((agujero.y + menorY) / factorY) * 2, (agujero.mecha.diametro) * 300, (agujero.mecha.diametro) * 300);
 
                 //g.FillEllipse(blackBrush, (agujero.x + menorX) / factorX, (agujero.y + menorY) / factorY, (agujero.mecha) * 300, (agujero.mecha) * 300);
                 i++;
