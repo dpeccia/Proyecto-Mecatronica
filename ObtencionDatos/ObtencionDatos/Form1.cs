@@ -151,7 +151,31 @@ namespace ObtencionDatos
                 MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
             }
         }
-        
+        // correccion a 0,0 para todos los puntos
+        public void CorreccionPuntos()
+        {
+            Agujero agujeroAux = (Agujero) listaAgujeros[0];
+            float minX = agujeroAux.x;
+            float minY = agujeroAux.y;
+
+            foreach (Agujero i in listaAgujeros)
+            {
+                if (i.x < minX)
+                {
+                    minX = i.x;
+                }
+                if(i.y < minY)
+                {
+                    minY = i.y;
+                }                
+            }
+            foreach (Agujero i in listaAgujeros)
+            {
+                i.x -= minX;
+                i.y -= minY;
+                i.xy = Convertir_xy_int_a_string(i.x, i.y);
+            }
+        }
         // Metodo de lectura del archivo en cuestion
         public void Leer_Archivo(string path)//OK
         {
@@ -206,14 +230,13 @@ namespace ObtencionDatos
                     Mecha mecha = new Mecha
                     {
                         nombre = lineasArchivo[i + 2].Substring(0, 3),
-                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6)) / 10000     // Dividimos por 1000 porque se come el .0
+                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6))
                     };
                     listaMechas.Add(mecha);
                 }
             }
-
             
-            String mechaActual;
+            //String mechaActual;
             Mecha auxMecha = new Mecha();
             float diametroMechaActual = 0;
 
@@ -221,12 +244,12 @@ namespace ObtencionDatos
             {
                 if (lineasArchivo[i].Substring(0, 1) == "T")            // Busca la mecha actual
                 {
-                    mechaActual = lineasArchivo[i].Substring(0, 3);
+                    auxMecha.nombre = lineasArchivo[i].Substring(0, 3);
                     foreach (Mecha mecha in listaMechas)
                     {
-                        if (mecha.nombre == mechaActual)
+                        if (mecha.nombre == auxMecha.nombre)
                         {
-                            diametroMechaActual = mecha.diametro;       // Le asigna el diametro a la mecha actual
+                            auxMecha.diametro = mecha.diametro;       // Le asigna el diametro a la mecha actual
                         }
                     }
                 }
@@ -235,13 +258,18 @@ namespace ObtencionDatos
                     Agujero agujero = new Agujero
                     {
                         x = Int32.Parse(lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1)),
-                        y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1))),
-                        mecha = (Mecha) auxMecha
+                        y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1)))
+                    };
+                    agujero.mecha = new Mecha
+                    {
+                        diametro = auxMecha.diametro,
+                        nombre = auxMecha.nombre
                     };
                     agujero.xy = Convertir_xy_int_a_string(agujero.x, agujero.y);
                     listaAgujeros.Add(agujero);
                 }
             }
+            CorreccionPuntos();
             TextBox1.Text += "Listas Terminadas" + Environment.NewLine;
             PuntosExtremos();
             TextBox1.Text += "Puntos para calibración guardados" + Environment.NewLine;
@@ -561,24 +589,21 @@ namespace ObtencionDatos
             foreach (Agujero agujero in listaAgujeros)
             {
                 mechaActual.nombre = agujero.mecha.nombre;
-                if(mechaActual.nombre == mechaAnterior.nombre)
-                { 
-                    Enviar("P");
-                    EnviarAgujero(agujero);
-                    while (readBuffer != "*")
-                    {
-                        Recibir();                        
-                    }
-                    TextBox1.Text += "AgujeroListo" + i + Environment.NewLine;
-                    if (i == listaAgujeros.Capacity)
-                    {
-                        Enviar("F");
-                    }
-                }
-                else
+                if (mechaActual.nombre != mechaAnterior.nombre)
                 {
                     Enviar(mechaActual.diametro.ToString());
                 }
+                Enviar("P");
+                EnviarAgujero(agujero);
+                while (readBuffer != "*")
+                {
+                    Recibir();                        
+                }
+                TextBox1.Text += "AgujeroListo" + i + Environment.NewLine;
+                if (i == listaAgujeros.Capacity)
+                {
+                    Enviar("F");
+                }                
             }
         }
 
