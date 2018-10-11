@@ -69,6 +69,7 @@ namespace ObtencionDatos
         {
 
         }
+
         public string Convertir_xy_int_a_string(float x, float y)
         {
             string xy = "";
@@ -151,6 +152,7 @@ namespace ObtencionDatos
                 MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
             }
         }
+
         // correccion a 0,0 para todos los puntos
         public void CorreccionPuntos()
         {
@@ -176,6 +178,7 @@ namespace ObtencionDatos
                 i.xy = Convertir_xy_int_a_string(i.x, i.y);
             }
         }
+
         // Metodo de lectura del archivo en cuestion
         public void Leer_Archivo(string path)//OK
         {
@@ -230,7 +233,7 @@ namespace ObtencionDatos
                     Mecha mecha = new Mecha
                     {
                         nombre = lineasArchivo[i + 2].Substring(0, 3),
-                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6))
+                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6))/1000   //En este VS hay que dividir por 1000, en el VS 2017 no
                     };
                     listaMechas.Add(mecha);
                 }
@@ -291,6 +294,19 @@ namespace ObtencionDatos
             CorreccionYmenos.Enabled = estado;
         }
 
+        public void EnviarMecha(float diametro)
+        {
+            string mecha;
+            mecha = "M";
+            mecha += diametro.ToString();
+            mecha = mecha.Replace(",", ".");
+            while (mecha.Length < 6)
+            {
+                mecha += "0";
+            }
+            Enviar(mecha);
+        }
+
         // Metodo para secuencia completa de calibracion
         public void Calibracion()
         {
@@ -304,7 +320,6 @@ namespace ObtencionDatos
             string mecha;
             //enableButtons(true);
             MmCorreccion.Enabled = true;
-
             Calibrar.Enabled = false;
 
             // Calibración eje z
@@ -312,60 +327,39 @@ namespace ObtencionDatos
             while (readBuffer != "M")      // Espera hasta recibir confirmacion de fin de secuencia
             {
                 Recibir();
-            }
-            TextBox1.Text += "Secuencia lista" + Environment.NewLine;
+            }            
 
             mechaEnviar = (Mecha)listaMechas[0];    
-            mecha = "M";
-            mecha += Convert.ToString(mechaEnviar.diametro);
-            while (mecha.Length < 6)
-            {
-                mecha += "0";
-            }
-            Enviar(mecha);  //Envia mecha para altura z
+            EnviarMecha(mechaEnviar.diametro);
 
             EnableButtons(true);
 
-            Enviar("A");    //Inicio ciclo ajuste
+            while (readBuffer != "A")      // Espera hasta recibir inicio de ajuste
+            {
+                Recibir();                
+            }
+            readBuffer = "";
+            Enviar("A");    // Primer Agujero ajuste
             // Calibación plano xy
             Enviar(punto1.xy); // Envia primer punto de referencia
             agujeroAux = punto1;    // Guarda punto en variable auxiliar
-            while (readBuffer != "*")
+            
+            TextBox1.Text += "Punto 1 Recibido" + Environment.NewLine;
+
+            while (readBuffer != "A")
+            {                
+                Recibir();                
+            }
+            readBuffer = "";
+            Enviar("A");    //Srgundo Agujero ajuste
+            Enviar(punto2.xy); // Envia primer punto de referencia
+            CalibracionLista.Enabled  = true;
+            
+            TextBox1.Text += "Punto 2 Recibido" + Environment.NewLine;
+            while (readBuffer != "F")//Extender a todo el metodo para hacerlo varias veces
             {
                 Recibir();
             }
-            TextBox1.Text += "Punto 1 Recibido"+Environment.NewLine;
-            Enviar("A");    //Fin ciclo ajuste
-            CalibracionLista.Enabled  = true;
-            /*
-            while (!ready) // Si se hace click en siguiente, continúa
-            {
-                Recibir();
-            }*/
-            /*
-            offsetReal.x = agujeroAux.x + punto1.x; //Revisar
-            offsetReal.y = agujeroAux.y + punto1.y; //Revisar
-            punto1 = agujeroAux;    //Guarda variable auxiliar con corrección en punto de referencia
-            punto2.x += offsetReal.x;
-            punto2.y += offsetReal.y;
-
-            calibracionLista.Text = "Finalizar";
-            
-            Enviar(punto2.xy); //Envia segundo punto de referencia
-            agujeroAux = punto2; // Guarda punto en variable auxiliar
-
-            while (readBuffer != "*")
-            {
-                Recibir();
-            }*/
-            /*ready = false;
-            CalculosOffset(punto1, punto2, punto2real);
-            punto2 = agujeroAux; // Guarda variable auxiliar con corrección en punto de referencia
-          
-            enableButtons(false);
-            mmCorreccion.Enabled = false;
-            calibrar.Enabled = true;
-            */
             return;
         }
         
@@ -442,11 +436,7 @@ namespace ObtencionDatos
             /**********************************************************/
 
         }
-        
-        private void PuertoSerieToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
+                
         // Envia posicion de agujero
         public void EnviarAgujero(Agujero agujero)
         {
@@ -460,7 +450,7 @@ namespace ObtencionDatos
 
         private void Calibrar_Click(object sender, EventArgs e)//OK
         {
-            Enviar("*");
+            Enviar("S");
             Calibracion();
         }
 
@@ -480,8 +470,87 @@ namespace ObtencionDatos
             {
                 // Si el puerto esta abierto, no muestra la lista
             }
+        }              
+        
+        private void MmCorreccion_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+        
+        private void PuertoSerie_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (PuertoSerie.IsOpen)
+            {
+                try
+                {
+                    readBuffer = PuertoSerie.ReadExisting();
+                    this.Invoke(new EventHandler(ActualizarTexto));
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
 
+        private void Ciclo_Agujereado()
+        {
+            int i = 1;
+            Mecha mechaAnterior = (Mecha) listaMechas[0];
+            Mecha mechaActual = (Mecha) listaMechas[0];
+            float diamMechaAnt = mechaAnterior.diametro;
+            float diamMechaAct = mechaAnterior.diametro;
+
+            Enviar("S");
+            foreach (Agujero agujero in listaAgujeros)
+            {
+                diamMechaAct = agujero.mecha.diametro;
+                if (diamMechaAct != diamMechaAnt)
+                {
+                    TextBox1.Text += "Inicio cambio mecha" + Environment.NewLine;
+                    Enviar("C");
+                    while (readBuffer != "M")   // Confirmacion cambio de mecha
+                    {
+                        Recibir();
+                    }
+                    EnviarMecha(diamMechaAct);
+                    while (readBuffer != "C")   // Confirmacion cambio de mecha
+                    {
+                        Recibir();                        
+                    }
+                    readBuffer = "";
+                    TextBox1.Text += "Inicio cambio mecha listo" + Environment.NewLine;
+                    diamMechaAnt = diamMechaAct;
+                }
+                Enviar("P");    // Envia punto
+                EnviarAgujero(agujero);
+                while (readBuffer != "*")   // Confirmacion de perforacion lista
+                {
+                    Recibir();
+                }
+                readBuffer = "";
+                TextBox1.Text += "Agujero Listo" + i + Environment.NewLine;
+                if (i == listaAgujeros.Capacity)    // Si es el ultimo agujero envia F
+                {
+                    Enviar("F");
+                    TextBox1.Text += "Fin Perforacion" + i + Environment.NewLine;
+                }
+                i++;                
+            }
+        }
+
+        private void OpenFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+        private void PuertoSerieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void BtnEnviar_Click(object sender, EventArgs e)//OK
+        {
+            Enviar(TxtEscribir.Text);
+            TxtEscribir.Text = "";
+        }
         private void BtnAbrirCerrar_Click_1(object sender, EventArgs e)//OK
         {
             if (PuertoSerie.IsOpen)
@@ -506,42 +575,9 @@ namespace ObtencionDatos
                 }
                 catch (Exception ex)
                 {
-
-                }                
-            }
-        }
-        
-        private void OpenFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void MmCorreccion_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void BtnEnviar_Click(object sender, EventArgs e)//OK
-        {
-            Enviar(TxtEscribir.Text);
-            TxtEscribir.Text = "";
-        }
-
-        private void PuertoSerie_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
-        {
-            if (PuertoSerie.IsOpen)
-            {
-                try
-                {
-                    readBuffer = PuertoSerie.ReadExisting();
-                    this.Invoke(new EventHandler(ActualizarTexto));
-                }
-                catch (Exception ex)
-                {
                 }
             }
         }
-
         private void CalibracionLista_Click(object sender, EventArgs e)
         {
             switch (state)
@@ -552,9 +588,9 @@ namespace ObtencionDatos
                     punto1 = agujeroAux;    //Guarda variable auxiliar con corrección en punto de referencia
                     punto2.x += offsetReal.x;
                     punto2.y += offsetReal.y;
-                    
+
                     CalibracionLista.Text = "Finalizar";
-                    
+
                     Enviar(punto2.xy); //Envia segundo punto de referencia
                     agujeroAux = punto2; // Guarda punto en variable auxiliar
 
@@ -562,14 +598,14 @@ namespace ObtencionDatos
                     {
                         Recibir();
                     }
-                    TextBox1.Text += "Agujero recibido"+Environment.NewLine;
+                    TextBox1.Text += "Agujero recibido" + Environment.NewLine;
                     state = 1;
 
                     break;
                 case 1:
                     CalculosOffset(punto1, punto2, punto2real);
                     punto2 = agujeroAux; // Guarda variable auxiliar con corrección en punto de referencia
-                    
+
                     EnableButtons(false);
                     MmCorreccion.Enabled = false;
                     Calibrar.Enabled = true;
@@ -579,34 +615,6 @@ namespace ObtencionDatos
                     break;
             }
         }
-
-        private void Ciclo_Agujereado()
-        {
-            int i = 1;
-            Mecha mechaAnterior = (Mecha) listaMechas[0];
-            Mecha mechaActual = (Mecha) listaMechas[0];
-            Enviar("S");
-            foreach (Agujero agujero in listaAgujeros)
-            {
-                mechaActual.nombre = agujero.mecha.nombre;
-                if (mechaActual.nombre != mechaAnterior.nombre)
-                {
-                    Enviar(mechaActual.diametro.ToString());
-                }
-                Enviar("P");
-                EnviarAgujero(agujero);
-                while (readBuffer != "*")
-                {
-                    Recibir();                        
-                }
-                TextBox1.Text += "AgujeroListo" + i + Environment.NewLine;
-                if (i == listaAgujeros.Capacity)
-                {
-                    Enviar("F");
-                }                
-            }
-        }
-
         private void CorreccionYmas_Click(object sender, EventArgs e)//OK Sujeto a cambios
         {
             agujeroAux.y += float.Parse(MmCorreccion.Text, System.Globalization.CultureInfo.InvariantCulture);
@@ -638,6 +646,9 @@ namespace ObtencionDatos
         }
     }
 }
-//TODO: Envio de puntos para calibracion
-//TODO: Envio de puntos para agujereado
-//TODO: Calibracion
+
+//TODO: VER USAR THREADS
+//TODO: Mover punto 1 teorico a real con botones
+//TODO: Mover punto 2 teorico a real con botones
+//TODO: No corregir a origen si esta dentro de los limites
+

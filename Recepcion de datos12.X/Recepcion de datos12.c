@@ -34,7 +34,7 @@ int contador, contador1;
 signed int32 x, y, xini, yini, pasosx, pasosy;
 float broca, pasosxflot, pasosyflot;
 int flagx, flagy, flagxy, flagcomienzo, flagmecha, flagboton;
-short int flagpaquete, flagajuste;
+short int flagpaquete, flagajuste, flagcambiomecha;
 signed int32 pasosz, zini, z, alturamecha, guarda;
 
 void moverz(void) 
@@ -104,35 +104,7 @@ void conversionpasos(void)
     pasosy = pasosy * 2;
 }
 
-void perforacion(void) 
-{
-    output_high(dremel);
-    while (flagpaquete == 0);
-    while (flagpaquete == 1) 
-    {
-        while (flagxy == 0);
-        while (flagxy == 1) 
-        {
-            x = (signed long long int) atof(datox);
-            y = (signed long long int) atof(datoy);
-            conversionpasos();
-            xini = x;
-            yini = y;
-            clear_interrupt(INT_TIMER0);
-            set_timer0(230);
-            enable_interrupts(INT_TIMER0); //Habilita interrupción timer0
-            flagx = 1;
-            flagy = 1;
-            while (flagxy == 1);
-            z = zini + 400; // Baja 4 mm
-            moverz();
-            z = zini - 400; //sube 4mm
-            moverz();
-            putc('*');
-        }
-    }
-    output_low(dremel);
-}
+
 
 void moverxy(void) 
 {
@@ -240,7 +212,7 @@ void bip(void)
 
 #INT_EXT2         //Atención a interrupción por cambio en RB2
 
-ext_isr1() //Función de interrupción
+void ext_isr1() //Función de interrupción
 { 
     putc('F');
     flagajuste = 0;
@@ -345,25 +317,31 @@ void TIMER1_isr(void) // Timer para buzzer
 void serial_isr() 
 {
     ch = getchar();
-    if (ch == 'F' && flagpaquete == 1) //Ciclo terminado
-    {
-        flagpaquete = flagpaquete + 1;
-        flagfin = 1;
-    }
+    
     if (ch == 'A') //Inicio Ajuste
     {
-        flagajuste = flagajuste + 1;
-    }
-    if (ch == 'P') //Dato de perforacion entrante
-    {
-        flagpaquete = flagpaquete + 1;
-    }
+        flagajuste = 1;
+    }    
     if (ch == 'S') 
     {
         flagcomienzo = 1;
     }
-    if (ch == 'M') //Mecha entrante
+    if (ch == 'P') //Dato de perforacion entrante
     {
+        flagpaquete = 1;
+    }
+    if (ch == 'F' && flagpaquete == 1) //Ciclo terminado
+    {
+        flagpaquete = 0;
+        flagfin = 1;
+    }
+    if (ch == 'C')
+    {
+        flagpaquete = 0;
+        flagcambiomecha = 1;
+    }
+    if (ch == 'M') //Mecha entrante    
+    {        
         flagmecha = 1;
         h = 0;
     }
@@ -393,7 +371,6 @@ void serial_isr()
         if (i == 7) 
         {
             flagx = 0;
-            putc('*');
         }
     }
     if ((flagy) == 1 && (ch != 'Y')) //Dato Y
@@ -402,12 +379,74 @@ void serial_isr()
         j = j + 1;
         if (j == 7) {
             flagy = 0;
-            flagxy = 1;
-            putc('*');
+            flagxy = 1;            
         }
     }
 }
+void perforacion(void) 
+{
+    output_high(dremel);
+    while (flagpaquete == 0)
+    {
+        if(flagcambiomecha == 1)
+        {
+            ajusteceroz();
+                ajusteceroxy();
+                posicionmecha();
+                putc('M');
+                mecha();
+                lcd_putc("\f\1Por favor coloque");
+                printf(lcd_putc"\2mecha de %01.2fmm y", broca);
+                lcd_putc("\3presione enter");
 
+                while (input(enter) == 0);
+                delay_ms(10);
+                bip();
+                while (input(enter) == 1);
+                alturamecha = 0;
+                profundidadmecha();
+                zini = alturamecha;
+                z = alturamecha - 500;
+                moverz();
+                ajusteceroxy();
+                flagcambiomecha = 0;
+                flagcomienzo = 1;
+                puts("C");  // Confirmacion cambio de mechareturn;
+                return;
+        }
+    }
+    while (flagpaquete == 1) 
+    {
+        while (flagxy == 0)
+        {
+            if(flagpaquete == 0)
+            {
+                    return;
+            }
+        }        
+        while (flagxy == 1) 
+        {
+            x = (signed long long int) atof(datox);
+            y = (signed long long int) atof(datoy);
+            conversionpasos();
+            xini = x;
+            yini = y;
+            clear_interrupt(INT_TIMER0);
+            set_timer0(230);
+            enable_interrupts(INT_TIMER0); //Habilita interrupción timer0
+            flagx = 1;
+            flagy = 1;
+            while (flagxy == 1);
+            z = zini + 400; // Baja 4 mm
+            moverz();
+            z = zini - 400; //sube 4mm
+            moverz();            
+            flagpaquete = 0;
+            putc('*');
+        }
+    }
+    output_low(dremel);
+}
 void main() 
 {
     delay_ms(1000);
@@ -466,14 +505,10 @@ void main()
         lcd_putc("\2Presione enter para");
         lcd_putc("\3comenzar el ajuste");
         lcd_putc("\4de la placa.");
-        while (input(enter) == 0) 
-        {
-        }
+        while (input(enter) == 0);
         delay_ms(10);
         bip();
-        while (input(enter) == 1) 
-        {
-        }
+        while (input(enter) == 1);
         alturamecha = 0;
         profundidadmecha();
         zini = alturamecha;
@@ -482,11 +517,10 @@ void main()
         ajusteceroxy();
         putc('A');
         while (flagajuste == 0 && salir == 0);
-
-        while (flagajuste == 1) 
+        while (flagajuste == 1)
         {
             while (flagxy == 0);
-            while (flagxy == 1) 
+            while (flagxy == 1)
             {
                 x = (signed long long int) atof(datox);
                 y = (signed long long int) atof(datoy);
@@ -499,21 +533,17 @@ void main()
                 flagx = 1;
                 flagy = 1;
                 while (flagxy == 1);
-                lcd_putc("\f\1Gire para subir o"); 
+                lcd_putc("\f\1Gire para subir o");
                 lcd_putc("\2bajar mecha.Presione");
                 lcd_putc("\3enter nuevo punto.");
                 lcd_putc("\4Boton rojo salir.");
                 clear_interrupt(INT_EXT_L2H);
                 enable_interrupts(INT_EXT_L2H);
-                while (input(enter) == 0 && salir == 0) 
-                {
-                }
+                while (input(enter) == 0 && salir == 0);
                 delay_ms(10);
                 bip();
-                while (input(enter) == 1 && salir == 0) 
-                {
-                }
-                if (input(enter) == 0 && salir == 0) 
+                while (input(enter) == 1 && salir == 0);
+                if (input(enter) == 0 && salir == 0)
                 {
                     guarda = zini;
                     zini = z;
@@ -523,44 +553,46 @@ void main()
                 }
             }
         }
+        
         bip();
         disable_interrupts(INT_EXT_L2H);
-        //salir=0;
-        while (flagfin == 0) {
-
-            if (salir == 0) {
+        
+        /*while (flagfin == 0) 
+        {
+            /*
+            if (salir == 0)
+            {
                 ajusteceroz();
                 ajusteceroxy();
                 posicionmecha();
+                putc('M');
                 mecha();
                 lcd_putc("\f\1Por favor coloque");
                 printf(lcd_putc"\2mecha de %01.2fmm y", broca);
                 lcd_putc("\3presione enter");
 
-
-                while (input(enter) == 0) 
-                {
-                }
+                while (input(enter) == 0);
                 delay_ms(10);
                 bip();
-                while (input(enter) == 1) 
-                {
-                }
+                while (input(enter) == 1);
                 alturamecha = 0;
                 profundidadmecha();
                 zini = alturamecha;
                 z = alturamecha - 500;
                 moverz();
                 ajusteceroxy();
-                puts("OK");
-            }
+                flagcambiomecha = 0;
+                flagcomienzo = 1
+                puts("C");  // Confirmacion cambio de mecha
+            }*/
             ajusteceroxy();
             contador = 2;
             lcd_putc("\f\1Perforadora Lista");
             lcd_putc("\2para operar haga click");
             lcd_putc("\3en \"Comenzar\"");
             while (flagcomienzo == 0);
-            
+        while (flagfin == 0)
+        {
             lcd_putc("\f\1PERFORANDO");
             flagcomienzo = 0;
             perforacion();

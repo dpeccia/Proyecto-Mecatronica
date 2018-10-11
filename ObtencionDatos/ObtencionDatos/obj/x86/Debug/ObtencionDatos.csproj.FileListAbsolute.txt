@@ -1,10 +1,10 @@
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
-E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csprojAssemblyReference.cache
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.cache
-E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.CoreCompileInputs.cache
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
 E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csprojAssemblyReference.cache
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.CoreCompileInputs.cache

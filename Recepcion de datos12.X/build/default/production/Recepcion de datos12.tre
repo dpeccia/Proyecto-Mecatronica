@@ -1,5 +1,5 @@
 ÀÄRecepcion de datos12
-   ÃÄMAIN  0/1154  Ram=1
+   ÃÄMAIN  0/924  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@delay_ms1  0/40  Ram=1
    ³  ÃÄlcd_init  0/104  Ram=0
@@ -204,33 +204,6 @@
    ³  ³  ÀÄ*
    ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
    ³  ÃÄbip  0/18  Ram=0
-   ³  ÃÄajusteceroz  0/110  Ram=1
-   ³  ³  ÀÄ*
-   ³  ÃÄajusteceroxy  0/154  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄposicionmecha  0/76  Ram=0
-   ³  ³  ÀÄ*
-   ³  ÃÄmecha  0/40  Ram=0
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGC_938  0/32  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGCN_938  0/32  Ram=3
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PRINTF_L32D_938FPFPF  0/384  Ram=13
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGCN_938  0/32  Ram=3
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGC_938  0/32  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄ@delay_ms1  0/40  Ram=1
-   ³  ÃÄbip  0/18  Ram=0
-   ³  ÃÄprofundidadmecha  0/194  Ram=1
-   ³  ³  ÀÄ*
-   ³  ÃÄmoverz  0/284  Ram=0
-   ³  ³  ÀÄ*
-   ³  ÃÄajusteceroxy  0/154  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGC_1  0/36  Ram=2
    ³  ÃÄajusteceroxy  0/154  Ram=2
    ³  ³  ÀÄ*
    ³  ÃÄ@PSTRINGC_938  0/32  Ram=2
@@ -241,7 +214,35 @@
    ³  ³  ÀÄ*
    ³  ÃÄ@PSTRINGC_938  0/32  Ram=2
    ³  ³  ÀÄ*
-   ³  ÀÄperforacion  0/240  Ram=1
+   ³  ÀÄperforacion  0/480  Ram=1
+   ³     ÃÄajusteceroz  0/110  Ram=1
+   ³     ³  ÀÄ*
+   ³     ÃÄajusteceroxy  0/154  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÃÄposicionmecha  0/76  Ram=0
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³     ÃÄmecha  0/40  Ram=0
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGC_938  0/32  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_938  0/32  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_L32D_938FPFPF  0/384  Ram=13
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_938  0/32  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGC_938  0/32  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÃÄ@delay_ms1  0/40  Ram=1
+   ³     ÃÄbip  0/18  Ram=0
+   ³     ÃÄprofundidadmecha  0/194  Ram=1
+   ³     ³  ÀÄ*
+   ³     ÃÄmoverz  0/284  Ram=0
+   ³     ³  ÀÄ*
+   ³     ÃÄajusteceroxy  0/154  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGC_1  0/36  Ram=2
    ³     ÃÄstrtof  0/568  Ram=19
    ³     ³  ÀÄ*
    ³     ÃÄ@FTOSD  0/62  Ram=5
@@ -268,6 +269,4 @@
    ³  ÀÄ@delay_us1  0/32  Ram=1
    ÃÄTIMER0_isr  0/206  Ram=0
    ÃÄTIMER1_isr  0/24  Ram=0
-   ÀÄserial_isr  0/260  Ram=2
-      ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
-      ÀÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ÀÄserial_isr  0/226  Ram=2
