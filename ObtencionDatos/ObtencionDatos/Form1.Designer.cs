@@ -284,29 +284,29 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TextBox1;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem ArchivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AbrirToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Calibrar;
         public System.IO.Ports.SerialPort PuertoSerie;
         private System.Windows.Forms.Button BtnAbrirCerrar;
         public System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemConfig;
         public System.Windows.Forms.ToolStripMenuItem ToolStripPuertoSerie;
         public System.Windows.Forms.ToolStripComboBox CboPuertoSerie;
-        private System.Windows.Forms.Button CorreccionYmas;
-        private System.Windows.Forms.Button CorreccionXmas;
-        private System.Windows.Forms.Button CorreccionXmenos;
-        private System.Windows.Forms.Button CorreccionYmenos;
         public System.Windows.Forms.MaskedTextBox MmCorreccion;
-        private System.Windows.Forms.TextBox TxtRecibir;
-        private System.Windows.Forms.TextBox TxtEscribir;
         private System.Windows.Forms.Button BtnEnviar;
         private System.Windows.Forms.Button CalibracionLista;
         private System.Windows.Forms.Button BtnComenzar;
         private System.Windows.Forms.Button VisualizarPuntos;
+        public System.Windows.Forms.Button Calibrar;
+        public System.Windows.Forms.Button CorreccionYmas;
+        public System.Windows.Forms.Button CorreccionXmas;
+        public System.Windows.Forms.Button CorreccionXmenos;
+        public System.Windows.Forms.Button CorreccionYmenos;
+        public System.Windows.Forms.TextBox TxtRecibir;
+        public System.Windows.Forms.TextBox TxtEscribir;
+        public System.Windows.Forms.TextBox TextBox1;
 
         public System.EventHandler configuracionToolStripMenuItem_Click { get; set; }
         

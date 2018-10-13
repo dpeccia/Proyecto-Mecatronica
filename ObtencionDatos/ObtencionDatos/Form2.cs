@@ -16,6 +16,7 @@ namespace ObtencionDatos
             InitializeComponent();
         }
 
+        
         public ObtencionDatos.Form1.Agujero agujerito;
         Graphics g;
 
@@ -108,6 +109,11 @@ namespace ObtencionDatos
 
             }
             
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
