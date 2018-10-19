@@ -36,3 +36,13 @@ Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\Ob
 Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
 Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
 Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog

@@ -21,7 +21,8 @@ namespace ObtencionDatos
         {
             public float x, y;
             public String xy = "X+000000Y+000000";           
-            public Mecha mecha;            
+            public Mecha mecha;
+            public String xStr, yStr;
         }
 
         // Creamos una clase mecha, que en principio usamos como estructura
@@ -29,6 +30,7 @@ namespace ObtencionDatos
         {
             public String nombre;
             public float diametro;
+            public String diametroStr;
         }
 
         // Creamos una clase offset, que contiene las correcciones en xy y angulo
@@ -41,6 +43,9 @@ namespace ObtencionDatos
         string readBuffer;
         string pathArchivo;
         int state;
+        int numEsquina = 0;
+        bool primerAjuste = true;
+        int indexAuxiliar = 0;
 
         int indexAgujero = 0;
         // - Se usa para el método Recibir(), para ir recorriendo toda la listaAgujeros e ir enviandolos para perforación
@@ -49,7 +54,6 @@ namespace ObtencionDatos
         // - Se usa para el método Recibir(), para ir posicionando la mecha según se vaya necesitando
 
         bool archivoAbierto;
-        bool primerAjuste = true;
         //Offset offsetGeneral;
         Offset offsetReal = new Offset();
 
@@ -60,6 +64,8 @@ namespace ObtencionDatos
         Agujero punto2 = new Agujero();
         Agujero punto1real = new Agujero();
         Agujero punto2real = new Agujero();
+
+        public String[] esquinas = new String[4];
 
         public ArrayList listaMechas = new ArrayList();
 
@@ -241,7 +247,8 @@ namespace ObtencionDatos
                     Mecha mecha = new Mecha
                     {
                         nombre = lineasArchivo[i + 2].Substring(0, 3),
-                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6))/1000   //En este VS hay que dividir por 1000, en el VS 2017 no
+                        diametro = float.Parse(lineasArchivo[i + 2].Substring(4, 6))/1000,   //En este VS hay que dividir por 1000, en el VS 2017 no
+                        diametroStr = lineasArchivo[i + 2].Substring(4, 6)
                     };
                     listaMechas.Add(mecha);
                 }
@@ -249,7 +256,7 @@ namespace ObtencionDatos
             
             //String mechaActual;
             Mecha auxMecha = new Mecha();
-            float diametroMechaActual = 0;
+            //float diametroMechaActual = 0;
 
             for (int i = separador; i < lineasArchivo.Length; i++)      // Recorre el archivo
             {
@@ -268,21 +275,44 @@ namespace ObtencionDatos
                 {
                     Agujero agujero = new Agujero
                     {
-                        x = Int32.Parse(lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1)),
-                        y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1)))
+                        //x = Int32.Parse(lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1)),
+                        //y = Int32.Parse(lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1)))
+                        xStr = lineasArchivo[i].Substring(1, lineasArchivo[i].IndexOf('Y', 1) - 1),
+                        yStr = lineasArchivo[i].Substring(lineasArchivo[i].IndexOf('Y', 1) + 1, lineasArchivo[i].Length - (lineasArchivo[i].IndexOf('Y', 1) + 1))
                     };
                     agujero.mecha = new Mecha
                     {
                         diametro = auxMecha.diametro,
                         nombre = auxMecha.nombre
                     };
-                    agujero.xy = Convertir_xy_int_a_string(agujero.x, agujero.y);
+                    if (agujero.xStr.Length -1 < 6)
+                    {
+                        string ceros = null;
+                        int largoCoord = agujero.xStr.Length -1;
+                        for (int j = 0; j < 6 - largoCoord; j++)
+                        {
+                            ceros += '0';
+                        }
+                        agujero.xStr = agujero.xStr.Substring(0,1) + ceros + agujero.xStr.Substring(1,agujero.xStr.Length-1);
+                    }
+                    if (agujero.yStr.Length -1 < 6)
+                    {
+                        string ceros = null;
+                        int largoCoord = agujero.yStr.Length-1;
+                        for (int j = 0; j < 6 - largoCoord; j++)
+                        {
+                            ceros += '0';
+                        }
+                        agujero.yStr = agujero.yStr.Substring(0,1)+ ceros + agujero.yStr.Substring(1,agujero.yStr.Length-1);
+                    }
+                    agujero.xy = "X" + agujero.xStr + "Y" + agujero.yStr;
+                    //agujero.xy = Convertir_xy_int_a_string(agujero.x, agujero.y);
                     listaAgujeros.Add(agujero);
                 }
             }
-            CorreccionPuntos();
+            //CorreccionPuntos();
             TextBox1.Text += "Listas Terminadas" + Environment.NewLine;
-            PuntosExtremos();
+            //PuntosExtremos();
             TextBox1.Text += "Puntos para calibración guardados" + Environment.NewLine;
         }
 
@@ -307,7 +337,8 @@ namespace ObtencionDatos
             string mecha;
             
             mecha = "M";
-            mecha += mechaAEnviar.diametro.ToString();
+            //mecha += mechaAEnviar.diametro.ToString();
+            mecha += mechaAEnviar.diametroStr;
             mecha = mecha.Replace(",", ".");
             while (mecha.Length < 6)
             {
@@ -315,6 +346,105 @@ namespace ObtencionDatos
             }
             Enviar(mecha);
         }
+
+
+        public void Leer_Archivo_Esquinas(String path)
+        {
+
+            string textoArchivo = null;
+            string[] lineasArchivo = null;
+
+            //Propias
+            int indexArchivo = 0;
+            string esquinaAux=null;
+            int contadorNumero;
+            int j;
+            string coordAux = null;
+            string esquinaFinalAux = null;
+            int inicioCoordY;
+            int largoCoord;
+            try
+            {
+                System.IO.File.OpenRead(path);
+                textoArchivo = System.IO.File.ReadAllText(path);
+                lineasArchivo = System.IO.File.ReadAllLines(path);
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("No se pudo abrir el archivo");
+                return;
+            }
+            catch (ArgumentException e)
+            {
+                return; // No se seleccionó un archivo
+            }
+
+
+            //Posicionamiento del indice de lectura de las esquinas
+            while (lineasArchivo[indexArchivo][0] != 'X')
+                indexArchivo++;
+
+            for (int i = 0; i < 4; i++)
+            {
+                esquinaAux = lineasArchivo[indexArchivo+i];
+                contadorNumero = 0;
+                j = 1;
+                while (esquinaAux[++j] != 'Y')
+                    contadorNumero++;
+                j++;
+                inicioCoordY = j+1;
+                coordAux = esquinaAux.Substring(2, contadorNumero);
+                if (contadorNumero > 1)
+                {
+                    coordAux = coordAux.Substring(0, coordAux.Length - 2); // le saco los dos ceros del final
+                    if (contadorNumero - 2 <= 5)
+                    {
+                        string ceros = null;
+                        contadorNumero -= 2;
+                        for (int k = 0; k < 6 - contadorNumero; k++)
+                        {
+                            ceros += '0'; 
+                        }
+                        coordAux = ceros + coordAux; // Le agrego ceros a la izquierda
+                    }
+                }
+
+                largoCoord = coordAux.Length;
+                for (int k = 0; k < 6 - largoCoord; k++) // Rellena con ceros a la derecha si hace falta (para tener 6 digitos)
+                    coordAux += '0';
+                
+                esquinaFinalAux = "X+" + coordAux;
+
+                contadorNumero = 0;
+                while (esquinaAux[++j] != 'D')
+                    contadorNumero++;
+                coordAux = esquinaAux.Substring(inicioCoordY, contadorNumero);
+                if (contadorNumero > 1)
+                {
+                    coordAux = coordAux.Substring(0, coordAux.Length - 2); // le saco los dos ceros del final
+                    if (contadorNumero - 2 <= 5)
+                    {
+                        string ceros = null;
+                        contadorNumero -= 2;
+                        for (int k = 0; k < 6 - contadorNumero; k++)
+                        {
+                            ceros += '0';
+                        }
+                        coordAux = ceros + coordAux; // Le agrego ceros a la izquierda (para tener 6 digitos)
+                    }
+                }
+                largoCoord = coordAux.Length;
+                for (int k = 0; k < 6 - largoCoord; k++) // Rellena con ceros a la derecha si hace falta (para tener 6 digitos)
+                    coordAux += '0';
+                esquinaFinalAux += "Y+" + coordAux;
+
+                //Para aca ya se tiene la esquina cargada en esquinaFinalAux
+                //Carga en el vector de esquinas
+                esquinas[i] = esquinaFinalAux;
+            }
+
+        }
+
 
         // Metodo para secuencia completa de calibracion
         public void Calibracion()
@@ -325,8 +455,6 @@ namespace ObtencionDatos
             Agujero punto1 = new Agujero();
             Agujero punto2 = new Agujero();
             Agujero punto2real = new Agujero();
-            Mecha mechaEnviar;
-            string mecha;
             //enableButtons(true);
             MmCorreccion.Enabled = true;
             Calibrar.Enabled = false;
@@ -400,14 +528,13 @@ namespace ObtencionDatos
         }
 
         
-
         // Guarda caracteres en readBuffer
-        public void Recibir()//OK
+        public void Recibir()// NO OK - TERMINAR!!!!!!!!!!!!!!!uno
         {
             String estado = "";
-            String Mecha;
             Agujero agujeroAuxiliar = new Agujero();
-            int indexAuxiliar = 0;
+            
+            
             /*if(PuertoSerie.IsOpen) // Maneja si no está abierto
             {
                 try
@@ -425,20 +552,34 @@ namespace ObtencionDatos
             {
                 case 'M':  // - Lo primero que envía el micro
                     indexMecha ++;
-                    EnviarMecha((Mecha)listaMechas[indexMecha]); // - Revisar que envíe correctamente [ IMPORTANTE ]
+                    EnviarMecha((Mecha)listaMechas[indexMecha]); // - Ya envia correctamente
                     //EnableButtons(true); ver
-                    while (agujeroAuxiliar.mecha == listaMechas[indexMecha]) // - Posiciona al indexAuxiliar en el agujero que tenga la próxima mecha
+                    
+                    //VER CUANDO SE INICIALIZA EL AGUJEROAUXILIAR -------------
+                    /*while (agujeroAuxiliar.mecha == (Mecha)listaMechas[indexMecha]) // - Posiciona al indexAuxiliar en el agujero que tenga la próxima mecha
                     {
                         agujeroAuxiliar = (Agujero) listaAgujeros[indexAuxiliar]; // - agujeroAuxiliar queda en la próxima mecha
                         indexAuxiliar++; // - indexAuxiliar queda en la posición de la próxima mecha
-                    }
+                    }*/
                     break;
-                case 'A': // - Lo segundo que envía el micro
+                case 'A':
+                    if (primerAjuste)
+                    {
+                        primerAjuste = false;
+                        Enviar("A");
+                    }
+                    Enviar(esquinas[numEsquina++]);
+                    if (numEsquina == 4)
+                        numEsquina = 0;
+                    break;
+                    /*
+                     * case 'A': // - Lo segundo que envía el micro
                     if (primerAjuste)
                     {
                         primerAjuste = false;
                         Enviar("A");    // Primer Agujero ajuste
                         // Calibación plano xy
+                        
                         Enviar(punto1.xy); // Envia primer punto de referencia
                         agujeroAux = punto1;    // Guarda punto en variable auxiliar
 
@@ -451,7 +592,9 @@ namespace ObtencionDatos
                         //CalibracionLista.Enabled = true;
                         //TextBox1.Text += "Punto 2 Recibido" + Environment.NewLine;
                     }
-                    break;
+                    break; 
+                *
+                */
                 case 'F': // - Lo tercero que envía el micro
                     //TextBox1.Text += "Ajuste terminado" + Environment.NewLine;
                     Enviar("*"); // - Agregado, da orden de inicio de perforación
@@ -468,15 +611,25 @@ namespace ObtencionDatos
                     indexAgujero++;
                     break;
                 case '*':
-                    Enviar(((Agujero)listaAgujeros[indexAgujero]).xy);
-                    if (indexAgujero == indexAuxiliar)
+                    Enviar(((Agujero)listaAgujeros[indexAgujero]).xy); // SE VA DE RANGO
+                    if (listaAgujeros.Count > indexAgujero + 1)
+                    {
+                        if (((Agujero)listaAgujeros[indexAgujero]).mecha == ((Agujero)listaAgujeros[indexAgujero + 1]).mecha)
+                            Enviar("P");
+                    }
+                    else
+                    {
+                        Enviar("F");
+                    }
+                    /*if (indexAgujero == indexAuxiliar)
                     {
                         Enviar("P"); // - Agregar una P al final del último punto de la misma mecha
-                    }
+                    }*/
                     indexAgujero++;
                     break;
                 case 'O':
                     Enviar("*");
+                    primerAjuste = true;
                     break;
             }
             
@@ -705,6 +858,22 @@ namespace ObtencionDatos
         {
             Form2 form2 = new Form2();
             form2.Show();
+        }
+
+        //Leer las esquinas
+        private void esquinasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog1.ShowDialog();
+            pathArchivo = OpenFileDialog1.FileName;
+            if (pathArchivo != "openFileDialog1")
+            {
+                label1.Text = pathArchivo;
+                Leer_Archivo_Esquinas(pathArchivo);
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
+            }
         }
     }
 }

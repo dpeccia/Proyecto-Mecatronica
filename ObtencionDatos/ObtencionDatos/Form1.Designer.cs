@@ -52,6 +52,7 @@
             this.CalibracionLista = new System.Windows.Forms.Button();
             this.BtnComenzar = new System.Windows.Forms.Button();
             this.VisualizarPuntos = new System.Windows.Forms.Button();
+            this.esquinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +79,8 @@
             // ArchivoToolStripMenuItem
             // 
             this.ArchivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AbrirToolStripMenuItem});
+            this.AbrirToolStripMenuItem,
+            this.esquinasToolStripMenuItem});
             this.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem";
             this.ArchivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.ArchivoToolStripMenuItem.Text = "Archivo";
@@ -86,7 +88,7 @@
             // AbrirToolStripMenuItem
             // 
             this.AbrirToolStripMenuItem.Name = "AbrirToolStripMenuItem";
-            this.AbrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.AbrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AbrirToolStripMenuItem.Text = "Abrir";
             this.AbrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
@@ -249,6 +251,13 @@
             this.VisualizarPuntos.UseVisualStyleBackColor = true;
             this.VisualizarPuntos.Click += new System.EventHandler(this.VisualizarPuntos_Click);
             // 
+            // esquinasToolStripMenuItem
+            // 
+            this.esquinasToolStripMenuItem.Name = "esquinasToolStripMenuItem";
+            this.esquinasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.esquinasToolStripMenuItem.Text = "Esquinas";
+            this.esquinasToolStripMenuItem.Click += new System.EventHandler(this.esquinasToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -307,6 +316,7 @@
         public System.Windows.Forms.TextBox TxtRecibir;
         public System.Windows.Forms.TextBox TxtEscribir;
         public System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.ToolStripMenuItem esquinasToolStripMenuItem;
 
         public System.EventHandler configuracionToolStripMenuItem_Click { get; set; }
         
