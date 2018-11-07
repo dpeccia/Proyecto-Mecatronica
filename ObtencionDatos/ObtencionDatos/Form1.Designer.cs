@@ -50,7 +50,6 @@
             this.TxtEscribir = new System.Windows.Forms.TextBox();
             this.BtnEnviar = new System.Windows.Forms.Button();
             this.CalibracionLista = new System.Windows.Forms.Button();
-            this.BtnComenzar = new System.Windows.Forms.Button();
             this.VisualizarPuntos = new System.Windows.Forms.Button();
             this.inst1 = new System.Windows.Forms.Label();
             this.inst2 = new System.Windows.Forms.Label();
@@ -226,15 +225,6 @@
             this.CalibracionLista.Text = "Siguiente";
             this.CalibracionLista.UseVisualStyleBackColor = true;
             // 
-            // BtnComenzar
-            // 
-            this.BtnComenzar.Location = new System.Drawing.Point(382, 65);
-            this.BtnComenzar.Name = "BtnComenzar";
-            this.BtnComenzar.Size = new System.Drawing.Size(75, 23);
-            this.BtnComenzar.TabIndex = 15;
-            this.BtnComenzar.Text = "Comenzar";
-            this.BtnComenzar.UseVisualStyleBackColor = true;
-            // 
             // VisualizarPuntos
             // 
             this.VisualizarPuntos.Location = new System.Drawing.Point(494, 249);
@@ -282,7 +272,6 @@
             this.Controls.Add(this.inst2);
             this.Controls.Add(this.inst1);
             this.Controls.Add(this.VisualizarPuntos);
-            this.Controls.Add(this.BtnComenzar);
             this.Controls.Add(this.CalibracionLista);
             this.Controls.Add(this.BtnEnviar);
             this.Controls.Add(this.TxtEscribir);
@@ -321,7 +310,6 @@
         public System.Windows.Forms.MaskedTextBox MmCorreccion;
         private System.Windows.Forms.Button BtnEnviar;
         private System.Windows.Forms.Button CalibracionLista;
-        private System.Windows.Forms.Button BtnComenzar;
         private System.Windows.Forms.Button VisualizarPuntos;
         public System.Windows.Forms.Button Calibrar;
         public System.Windows.Forms.Button CorreccionYmas;
