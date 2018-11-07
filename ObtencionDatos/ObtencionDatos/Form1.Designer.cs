@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.CuadroTexto = new System.Windows.Forms.TextBox();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.ArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AbrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.esquinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripPuertoSerie = new System.Windows.Forms.ToolStripMenuItem();
             this.CboPuertoSerie = new System.Windows.Forms.ToolStripComboBox();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
             this.Calibrar = new System.Windows.Forms.Button();
             this.PuertoSerie = new System.IO.Ports.SerialPort(this.components);
             this.BtnAbrirCerrar = new System.Windows.Forms.Button();
@@ -52,18 +52,20 @@
             this.CalibracionLista = new System.Windows.Forms.Button();
             this.BtnComenzar = new System.Windows.Forms.Button();
             this.VisualizarPuntos = new System.Windows.Forms.Button();
-            this.esquinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inst1 = new System.Windows.Forms.Label();
+            this.inst2 = new System.Windows.Forms.Label();
+            this.inst3 = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TextBox1
+            // CuadroTexto
             // 
-            this.TextBox1.Location = new System.Drawing.Point(12, 94);
-            this.TextBox1.Multiline = true;
-            this.TextBox1.Name = "TextBox1";
-            this.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextBox1.Size = new System.Drawing.Size(445, 195);
-            this.TextBox1.TabIndex = 0;
+            this.CuadroTexto.Location = new System.Drawing.Point(12, 114);
+            this.CuadroTexto.Multiline = true;
+            this.CuadroTexto.Name = "CuadroTexto";
+            this.CuadroTexto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.CuadroTexto.Size = new System.Drawing.Size(445, 175);
+            this.CuadroTexto.TabIndex = 0;
             // 
             // menu
             // 
@@ -88,9 +90,16 @@
             // AbrirToolStripMenuItem
             // 
             this.AbrirToolStripMenuItem.Name = "AbrirToolStripMenuItem";
-            this.AbrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AbrirToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.AbrirToolStripMenuItem.Text = "Abrir";
             this.AbrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
+            // 
+            // esquinasToolStripMenuItem
+            // 
+            this.esquinasToolStripMenuItem.Name = "esquinasToolStripMenuItem";
+            this.esquinasToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.esquinasToolStripMenuItem.Text = "Esquinas";
+            this.esquinasToolStripMenuItem.Click += new System.EventHandler(this.esquinasToolStripMenuItem_Click);
             // 
             // ToolStripMenuItemConfig
             // 
@@ -113,15 +122,6 @@
             this.CboPuertoSerie.Name = "CboPuertoSerie";
             this.CboPuertoSerie.Size = new System.Drawing.Size(121, 23);
             this.CboPuertoSerie.Click += new System.EventHandler(this.ToolStripComboBox1_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Path";
             // 
             // Calibrar
             // 
@@ -155,7 +155,6 @@
             this.CorreccionYmas.Size = new System.Drawing.Size(34, 34);
             this.CorreccionYmas.TabIndex = 4;
             this.CorreccionYmas.UseVisualStyleBackColor = true;
-            this.CorreccionYmas.Click += new System.EventHandler(this.CorreccionYmas_Click);
             // 
             // CorreccionXmas
             // 
@@ -165,7 +164,6 @@
             this.CorreccionXmas.Size = new System.Drawing.Size(34, 34);
             this.CorreccionXmas.TabIndex = 5;
             this.CorreccionXmas.UseVisualStyleBackColor = true;
-            this.CorreccionXmas.Click += new System.EventHandler(this.CorreccionXmenos_Click);
             // 
             // CorreccionXmenos
             // 
@@ -174,7 +172,6 @@
             this.CorreccionXmenos.Name = "CorreccionXmenos";
             this.CorreccionXmenos.Size = new System.Drawing.Size(34, 34);
             this.CorreccionXmenos.TabIndex = 13;
-            this.CorreccionXmenos.Click += new System.EventHandler(this.CorreccionXmenos_Click);
             // 
             // CorreccionYmenos
             // 
@@ -184,7 +181,6 @@
             this.CorreccionYmenos.Size = new System.Drawing.Size(34, 34);
             this.CorreccionYmenos.TabIndex = 7;
             this.CorreccionYmenos.UseVisualStyleBackColor = true;
-            this.CorreccionYmenos.Click += new System.EventHandler(this.CorreccionYmenos_Click);
             // 
             // MmCorreccion
             // 
@@ -229,7 +225,6 @@
             this.CalibracionLista.TabIndex = 14;
             this.CalibracionLista.Text = "Siguiente";
             this.CalibracionLista.UseVisualStyleBackColor = true;
-            this.CalibracionLista.Click += new System.EventHandler(this.CalibracionLista_Click);
             // 
             // BtnComenzar
             // 
@@ -239,7 +234,6 @@
             this.BtnComenzar.TabIndex = 15;
             this.BtnComenzar.Text = "Comenzar";
             this.BtnComenzar.UseVisualStyleBackColor = true;
-            this.BtnComenzar.Click += new System.EventHandler(this.BtnComenzar_Click);
             // 
             // VisualizarPuntos
             // 
@@ -251,12 +245,32 @@
             this.VisualizarPuntos.UseVisualStyleBackColor = true;
             this.VisualizarPuntos.Click += new System.EventHandler(this.VisualizarPuntos_Click);
             // 
-            // esquinasToolStripMenuItem
+            // inst1
             // 
-            this.esquinasToolStripMenuItem.Name = "esquinasToolStripMenuItem";
-            this.esquinasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.esquinasToolStripMenuItem.Text = "Esquinas";
-            this.esquinasToolStripMenuItem.Click += new System.EventHandler(this.esquinasToolStripMenuItem_Click);
+            this.inst1.AutoSize = true;
+            this.inst1.Location = new System.Drawing.Point(229, 7);
+            this.inst1.Name = "inst1";
+            this.inst1.Size = new System.Drawing.Size(156, 13);
+            this.inst1.TabIndex = 17;
+            this.inst1.Text = "1. Abrir un archivo de Drill .DRL";
+            // 
+            // inst2
+            // 
+            this.inst2.AutoSize = true;
+            this.inst2.Location = new System.Drawing.Point(229, 24);
+            this.inst2.Name = "inst2";
+            this.inst2.Size = new System.Drawing.Size(211, 13);
+            this.inst2.TabIndex = 18;
+            this.inst2.Text = "2. Abrir un archivo de esquinas Mechanical";
+            // 
+            // inst3
+            // 
+            this.inst3.AutoSize = true;
+            this.inst3.Location = new System.Drawing.Point(229, 40);
+            this.inst3.Name = "inst3";
+            this.inst3.Size = new System.Drawing.Size(142, 13);
+            this.inst3.TabIndex = 19;
+            this.inst3.Text = "3. Abrir el puerto y Comenzar";
             // 
             // Form1
             // 
@@ -264,6 +278,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 301);
+            this.Controls.Add(this.inst3);
+            this.Controls.Add(this.inst2);
+            this.Controls.Add(this.inst1);
             this.Controls.Add(this.VisualizarPuntos);
             this.Controls.Add(this.BtnComenzar);
             this.Controls.Add(this.CalibracionLista);
@@ -277,12 +294,11 @@
             this.Controls.Add(this.CorreccionYmas);
             this.Controls.Add(this.BtnAbrirCerrar);
             this.Controls.Add(this.Calibrar);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TextBox1);
+            this.Controls.Add(this.CuadroTexto);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Forme1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -297,7 +313,6 @@
         private System.Windows.Forms.ToolStripMenuItem ArchivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AbrirToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog1;
-        private System.Windows.Forms.Label label1;
         public System.IO.Ports.SerialPort PuertoSerie;
         private System.Windows.Forms.Button BtnAbrirCerrar;
         public System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemConfig;
@@ -315,8 +330,11 @@
         public System.Windows.Forms.Button CorreccionYmenos;
         public System.Windows.Forms.TextBox TxtRecibir;
         public System.Windows.Forms.TextBox TxtEscribir;
-        public System.Windows.Forms.TextBox TextBox1;
+        public System.Windows.Forms.TextBox CuadroTexto;
         private System.Windows.Forms.ToolStripMenuItem esquinasToolStripMenuItem;
+        private System.Windows.Forms.Label inst1;
+        private System.Windows.Forms.Label inst2;
+        private System.Windows.Forms.Label inst3;
 
         public System.EventHandler configuracionToolStripMenuItem_Click { get; set; }
         
