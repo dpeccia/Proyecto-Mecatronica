@@ -16,13 +16,17 @@ namespace ObtencionDatos
     {
         public static ArrayList listaAgujeros = new ArrayList();
         
-        // Creamos una clase agujero, que en principio usamos como estructura
+        // Creamos una clase agujero del culo, que en principio usamos como estructura
         public class Agujero
         {
             public float x, y;
             public String xy = "X+000000Y+000000";           
             public Mecha mecha;
             public String xStr, yStr;
+            public Agujero(){}
+            public Agujero(String xy){
+                this.xy = xy;
+            }
         }
 
         // Creamos una clase mecha, que en principio usamos como estructura
@@ -71,9 +75,21 @@ namespace ObtencionDatos
         Agujero punto2 = new Agujero();
         Agujero punto1real = new Agujero();
         Agujero punto2real = new Agujero();
+        Agujero extremoMin;
+        Agujero extremoMax;
 
-        public String[] esquinas = new String[4];
-
+        public class Esquina
+        {
+            public int xCoord;
+            public int yCoord;
+            public String cadena;
+            public Esquina(String cadena)
+            {
+                this.cadena = cadena;
+            }
+            public Esquina(){}
+        }
+        public Esquina[] esquinas = new Esquina[4];
         public ArrayList listaMechas = new ArrayList();
 
         //public void Convertir_string_a_xy(Agujero agujero){}
@@ -83,7 +99,6 @@ namespace ObtencionDatos
             InitializeComponent();
             extremo.x = 500;
             extremo.y = 500;
-            MmCorreccion.Text = "00.0";
         }
 
         // Abrir archivo para leer
@@ -103,7 +118,7 @@ namespace ObtencionDatos
                 MessageBox.Show("No se ha seleccionado un archivo", "Error de seleccion");
             }
         }
-
+        /*
         public void PuntosExtremos()
         {
             Mecha mechaAux1 = (Mecha)listaMechas[0];
@@ -131,12 +146,36 @@ namespace ObtencionDatos
             }
             CuadroTexto.Text += "Puntos para calibración elegidos" + Environment.NewLine;
         }
+        */
+        public void PuntosExtremosMech()
+        {
+            float diametroMax = ((Mecha)listaMechas[0]).diametro;
+            if (listaMechas.Count >= 2)
+            {
+                if (((Mecha)listaMechas[1]).diametro <= 2 * diametroMax)
+                    diametroMax = ((Mecha)listaMechas[1]).diametro;
+            }
+            
+            extremoMin = new Agujero(esquinas[2].cadena);
+            extremoMin.x = float.Parse(extremoMin.xy.Substring(1, 7)) / CORRECCIONMECHA;
+            extremoMin.y = float.Parse(extremoMin.xy.Substring(9, 7)) / CORRECCIONMECHA;
+            extremoMax = new Agujero(esquinas[0].cadena);
+            extremoMax.x = float.Parse(extremoMax.xy.Substring(1, 7)) / CORRECCIONMECHA;
+            extremoMax.y = float.Parse(extremoMax.xy.Substring(9, 7)) / CORRECCIONMECHA;
+
+            foreach (Agujero agujero in listaAgujeros)
+            {
+                if (agujero.x <= extremoMin.x && agujero.y <= extremoMin.y && (agujero.mecha.diametro <= diametroMax))
+                    extremoMin = agujero;
+                if (agujero.x >= extremoMax.x && agujero.y >= extremoMax.y && (agujero.mecha.diametro <= diametroMax))
+                    extremoMax = agujero;
+            }
+        }
 
         // Metodo de lectura del archivo en cuestion
         public void Leer_Archivo(string path)
         {
             string[] lineasArchivo = null;
-
             try
             {
                 System.IO.File.OpenRead(path);
@@ -163,6 +202,22 @@ namespace ObtencionDatos
                                     lineasArchivo[indexArchivo].Substring(4,6)));
                 }
                 indexArchivo++;
+            }
+            Mecha mechaAux = new Mecha();
+            Mecha mechaComp = new Mecha();
+            for (int i = 0; i < listaMechas.Count; i++)
+            {
+                for (int j = i+1; j < listaMechas.Count; j++)
+                {
+                    mechaAux = (Mecha)listaMechas[i];
+                    mechaComp = (Mecha)listaMechas[j];
+
+                    if (mechaAux.diametro > mechaComp.diametro)
+                    {
+                        listaMechas[j] = mechaAux;
+                        listaMechas[i] = mechaComp;
+                    }
+                }
             }
 
             CuadroTexto.Text += "Mechas cargadas: " + listaMechas.Count + Environment.NewLine + Environment.NewLine;
@@ -214,7 +269,7 @@ namespace ObtencionDatos
             }
             
             CuadroTexto.Text += "Listas Terminadas" + Environment.NewLine;
-            PuntosExtremos();
+            PuntosExtremosMech();
             CuadroTexto.Text += "Puntos para calibración guardados" + Environment.NewLine + Environment.NewLine;
         }
 
@@ -224,8 +279,8 @@ namespace ObtencionDatos
         {
             foreach (Agujero agujero in listaAgujeros)
             {
-                agujero.x -= float.Parse(esquinas[0].Substring(1,7));
-                agujero.y -= float.Parse(esquinas[0].Substring(9,7));
+                agujero.x -= float.Parse(esquinas[0].cadena.Substring(1,7));
+                agujero.y -= float.Parse(esquinas[0].cadena.Substring(9,7));
                 agujero.xy = Convertir_xy_int_a_string(agujero.x, agujero.y);
             }
         }        
@@ -272,13 +327,13 @@ namespace ObtencionDatos
                 return; // No se seleccionó un archivo
             }
 
-
             //Posicionamiento del indice de lectura de las esquinas
             while (lineasArchivo[indexArchivo][0] != 'X')
                 indexArchivo++;
 
             for (int i = 0; i < 4; i++)
             {
+                esquinas[i] = new Esquina();
                 esquinaAux = lineasArchivo[indexArchivo+i];
                 contadorNumero = 0;
                 j = 1;
@@ -305,7 +360,8 @@ namespace ObtencionDatos
                 largoCoord = coordAux.Length;
                 for (int k = 0; k < 6 - largoCoord; k++) // Rellena con ceros a la derecha si hace falta (para tener 6 digitos)
                     coordAux += '0';
-                
+
+                esquinas[i].xCoord = Int32.Parse(coordAux); // Cargo en la clase Esquina el atributo xCoord con el valor de coordAux
                 esquinaFinalAux = "X+" + coordAux;
 
                 contadorNumero = 0;
@@ -330,10 +386,12 @@ namespace ObtencionDatos
                 for (int k = 0; k < 6 - largoCoord; k++) // Rellena con ceros a la derecha si hace falta (para tener 6 digitos)
                     coordAux += '0';
                 esquinaFinalAux += "Y+" + coordAux;
-
+                esquinas[i].yCoord = Int32.Parse(coordAux);
+                
                 //Para aca ya se tiene la esquina cargada en esquinaFinalAux
                 //Carga en el vector de esquinas
-                esquinas[i] = esquinaFinalAux;
+                //esquinas[i] = new Esquina(esquinaFinalAux);
+                esquinas[i].cadena = esquinaFinalAux;
             }
         }
         
@@ -379,13 +437,13 @@ namespace ObtencionDatos
                             primerAjuste = false;
                             Enviar("A");
                         }
-                        Enviar(esquinas[numEsquina++]);
+                        Enviar(esquinas[numEsquina++].cadena);
                     }
                     else if (numEsquina++ == 4)
-                        Enviar(punto1.xy);
+                        Enviar(extremoMin.xy);
                     else
                     {
-                        Enviar(punto2.xy);
+                        Enviar(extremoMax.xy);
                         numEsquina = 0;
                     }
                     break;
@@ -488,12 +546,6 @@ namespace ObtencionDatos
             Recibir();
         }
 
-        private void BtnEnviar_Click(object sender, EventArgs e)//OK
-        {
-            Enviar(TxtEscribir.Text);
-            TxtEscribir.Text = "";
-        }
-
         private void BtnAbrirCerrar_Click_1(object sender, EventArgs e)//OK
         {
             if (PuertoSerie.IsOpen)
@@ -501,7 +553,7 @@ namespace ObtencionDatos
                 PuertoSerie.DiscardInBuffer();
                 PuertoSerie.Close();
                 BtnAbrirCerrar.Text = "Abrir Puerto";
-                Calibrar.Enabled = false;
+                Calibrar.Enabled = false;   
             }
             else
             {
@@ -511,6 +563,7 @@ namespace ObtencionDatos
                     PuertoSerie.Open();
                     Calibrar.Enabled = true;
                     BtnAbrirCerrar.Text = "Cerrar Puerto";
+
                 }
                 catch (UnauthorizedAccessException ex)
                 {
@@ -555,8 +608,18 @@ namespace ObtencionDatos
 
         private void VisualizarPuntos_Click(object sender, EventArgs e)
         {
-
+            Form2 form2 = new Form2();
+            form2.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PuertoSerie.Close();
+            Form3 form3 = new Form3(PuertoSerie.PortName);
+            form3.ShowDialog();
+            PuertoSerie.Open();
+        }
+
 
     }
 }
