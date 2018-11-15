@@ -1,0 +1,65 @@
+LABCENTER PROTEUS TOOL INFORMATION FILE
+=======================================
+
+In case of difficulty, please e-mail support@labcenter.co.uk
+
+Tool set up for Proteus layout 'Recepcion de datos13.pdsprj'.
+CADCAM generated at 10:07:23 a.m. on jueves, 18 de octubre de 2018.
+
+File List
+---------
+Bottom Copper           : Recepcion de datos13 - CADCAM Bottom Copper.GBR
+Mechanical 1            : Recepcion de datos13 - CADCAM Mechanical 1.GBR
+Drill                   : Recepcion de datos13 - CADCAM Drill.DRL
+Netlist                 : Recepcion de datos13 - CADCAM Netlist.IPC
+
+Photoplotter Setup
+------------------
+Format: RS274X, ASCII, 4.3, metric, absolute, eob=*, LZO
+Notes:  D=Diameter, S=Side, W=Width, H=Height, C=Chamfer, I=Index
+
+D10	CIRCLE  D=0.254mm                                                         DRAW 
+D11	CIRCLE  D=0.635mm                                                         DRAW 
+D12	CIRCLE  D=0.762mm                                                         DRAW 
+D13	CIRCLE  D=1.27mm                                                          DRAW 
+D14	CIRCLE  D=0.381mm                                                         DRAW 
+D15	CIRCLE  D=0.3048mm                                                        DRAW 
+D16	CIRCLE  D=0.508mm                                                         DRAW 
+D17	CIRCLE  D=2.032mm                                                         FLASH
+D18	SQUARE  S=2.54mm                                                          FLASH
+D19	CIRCLE  D=2.54mm                                                          FLASH
+D70	PPAD    W=1.524mm             H=2.54mm              I=0                   FLASH
+D71	SQUARE  S=2.032mm                                                         FLASH
+D20	CIRCLE  D=3.048mm                                                         FLASH
+D21	PPAD    W=2.54mm              H=1.524mm             I=1                   FLASH
+D22	CIRCLE  D=2.286mm                                                         FLASH
+D23	CIRCLE  D=1.778mm                                                         FLASH
+D24	CIRCLE  D=1.524mm                                                         FLASH
+D25	CIRCLE  D=6.35mm                                                          FLASH
+D26	CIRCLE  D=0.2032mm                                                        DRAW 
+D27	CIRCLE  D=0.127mm                                                         DRAW 
+D28	CIRCLE  D=0.0635mm                                                        DRAW 
+
+NC Drill Setup
+--------------
+Format: Excellon, ASCII, 4.3, metric, absolute, eob=<CR><LF>, no zero suppression.
+Notes:  Tool sizes are diameters. Layer sets are in brackets - 0=TOP, 15=BOTTOM, 1-14=INNER.
+
+T01	0.508mm (0-15) Plated
+T02	1.27mm (0-15) Plated
+T03	1.524mm (0-15) Plated
+T04	1.016mm (0-15) Plated
+T05	1.143mm (0-15) Plated
+T06	0.762mm (0-15) Plated
+T07	4mm (0-15) Plated
+
+Layer Stackup
+-------------
+Top Solder Resist        : 0.01016mm  Resist
+Top Copper               : 0.03556mm  Copper
+Core                     : 1.48336mm  FR4
+Bottom Copper            : 0.03556mm  Copper
+Bottom Solder Resist     : 0.01016mm  Resist
+
+
+[END OF FILE]

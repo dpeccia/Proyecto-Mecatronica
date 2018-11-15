@@ -1,0 +1,10 @@
+P  JOB  prueba - CADCAM Netlist.IPC
+P  UNITS SI
+P  VER IPC-D-356A
+C  Creator: Proteus v8.7-SP3-Build25561
+P  IMAGE PRIMARY
+317                       -    MD0381PA00X+010000Y+030000X1016          S0
+317                       -    MD0381PA00X+035000Y+025000X1016          S0
+317                       -    MD0381PA00X+030000Y+040000X1016          S0
+317                       -    MD0381PA00X+020000Y+010000X1016          S0
+999
