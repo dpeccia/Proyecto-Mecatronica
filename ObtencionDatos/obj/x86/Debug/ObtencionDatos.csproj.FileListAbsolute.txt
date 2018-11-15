@@ -1,0 +1,134 @@
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.cache
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csprojAssemblyReference.cache
+E:\Proyecto\GUI\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.CoreCompileInputs.cache
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.Cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica kk\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\Proyecto-Mecatronica MODIF\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\ELECTRONICA\Desktop\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL ANDANDO beta\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csprojResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\PROYECTO FINAL - Mecha\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.Cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Konig\Proyecto\2 - Proyecto BETA\Modificaciones\Proyecto-Mecatronica-master\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\2\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.Cache
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form3.resources
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.Cache
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+C:\Users\ELECTRONICA\Desktop\Nueva carpeta (2)\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form2.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form3.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.Cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form3.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.exe
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\bin\Debug\ObtencionDatos.pdb
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form1.resources
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Form3.resources
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.Properties.Resources.resources
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.GenerateResource.cache
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.csproj.CoreCompileInputs.cache
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.exe
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.pdb
+C:\Users\Cristian Rios\Desktop\Sistema Dual - Ultimo Modulo\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.GraficadorForm.resources
+Z:\Mecatronica\Alumnos\Segundo\Rios\2 - Proyecto BETA\ULTIMOO\ObtencionDatos\ObtencionDatos\obj\x86\Debug\ObtencionDatos.GraficadorForm.resources
